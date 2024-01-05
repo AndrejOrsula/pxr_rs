@@ -1,0 +1,25 @@
+[package]
+name = "pxr"
+authors.workspace = true
+categories.workspace = true
+description.workspace = true
+edition.workspace = true
+keywords.workspace = true
+license.workspace = true
+readme.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+version.workspace = true
+
+[dependencies]
+thiserror = { workspace = true }
+pxr_sys = { workspace = true }
+
+[features]
+# TODO: Wrap features of pxr_sys
+default = []
+
+[lib]
+name = "pxr"
+path = "src/lib.rs"
+crate-type = ["rlib"]

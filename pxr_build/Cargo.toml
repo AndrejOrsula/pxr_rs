@@ -1,0 +1,22 @@
+[package]
+name = "pxr_build"
+authors.workspace = true
+categories.workspace = true
+description.workspace = true
+edition.workspace = true
+keywords.workspace = true
+license.workspace = true
+readme.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+version.workspace = true
+
+[dependencies]
+anyhow = { workspace = true }
+regex = { workspace = true }
+which = { workspace = true }
+
+[lib]
+name = "pxr_build"
+path = "src/lib.rs"
+crate-type = ["rlib"]

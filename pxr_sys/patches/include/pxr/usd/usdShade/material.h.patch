@@ -1,0 +1,39 @@
+--- ./pxr/usd/usdShade/material.h
++++ ./pxr/usd/usdShade/material.h
+@@ -289,7 +289,7 @@
+     // --------------------------------------------------------------------- //
+
+     /// A function type that takes a path and returns a bool.
+-    typedef std::function<bool (const SdfPath &)> PathPredicate;
++    // typedef std::function<bool (const SdfPath &)> PathPredicate;
+
+     /// @}
+
+@@ -489,9 +489,9 @@
+ private:
+     // Helper method to compute the sources of a given output, identified by its 
+     // baseName, for the renderContexts in the specified contextVector.
+-    UsdShadeAttributeVector _ComputeNamedOutputSources(
+-        const TfToken &baseName,
+-        const TfTokenVector &contextVector) const;
++    // UsdShadeAttributeVector _ComputeNamedOutputSources(
++    //     const TfToken &baseName,
++    //     const TfTokenVector &contextVector) const;
+
+     // Helper method to compute the source shader of a given output, identified 
+     // by its baseName, for the renderContexts in the specified contextVector.
+@@ -669,10 +669,10 @@
+     /// This is a public static function to support applications that use
+     /// Pcp but not Usd. Most clients should call \ref GetBaseMaterialPath,
+     /// which uses this function when appropriate.
+-    USDSHADE_API
+-    static SdfPath FindBaseMaterialPathInPrimIndex(
+-        const PcpPrimIndex & primIndex,
+-        const PathPredicate & pathIsMaterialPredicate);
++    // USDSHADE_API
++    // static SdfPath FindBaseMaterialPathInPrimIndex(
++    //     const PcpPrimIndex & primIndex,
++    //     const PathPredicate & pathIsMaterialPredicate);
+
+     /// Set the base Material of this Material.
+     /// An empty Material is equivalent to clearing the base Material.

@@ -1,0 +1,36 @@
+--- ./pxr/usd/usd/primTypeInfo.h
++++ ./pxr/usd/usd/primTypeInfo.h
+@@ -84,10 +84,10 @@
+         // we can just return it. Note that we use memory_order_acquire for
+         // the case wher _FindOrCreatePrimDefinition needs to build its own
+         // prim definition.
+-        if (const UsdPrimDefinition *primDef = 
+-                _primDefinition.load(std::memory_order_acquire)) {
+-            return *primDef;
+-        }
++        // if (const UsdPrimDefinition *primDef = 
++        //         _primDefinition.load(std::memory_order_acquire)) {
++        //     return *primDef;
++        // }
+         return *_FindOrCreatePrimDefinition();
+     }
+
+@@ -169,7 +169,8 @@
+     };
+
+     // Default constructor. Empty type.
+-    UsdPrimTypeInfo() : _primDefinition(nullptr) {}
++    // UsdPrimTypeInfo() : _primDefinition(nullptr) {}
++    UsdPrimTypeInfo() {}
+
+     // Move constructor from a _TypeId.
+     UsdPrimTypeInfo(_TypeId &&typeId);
+@@ -187,7 +188,7 @@
+     TfToken _schemaTypeName;
+
+     // Cached pointer to the prim definition.
+-    mutable std::atomic<const UsdPrimDefinition *> _primDefinition;
++    // mutable std::atomic<const UsdPrimDefinition *> _primDefinition;
+
+     // When there are applied API schemas, _FindOrCreatePrimDefinition will
+     // build a custom prim definition that it will own for its lifetime. This

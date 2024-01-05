@@ -1,0 +1,27 @@
+--- ./pxr/usd/usdShade/utils.h
++++ ./pxr/usd/usdShade/utils.h
+@@ -121,15 +121,15 @@
+     /// connection paths in order. The list can contain both UsdShadeOutput and
+     /// UsdShadeInput attributes. It is up to the caller to decide how to
+     /// process such a mixture.
+-    USDSHADE_API
+-    static UsdShadeAttributeVector GetValueProducingAttributes(
+-        UsdShadeInput const &input,
+-        bool shaderOutputsOnly = false);
+-    /// \overload
+-    USDSHADE_API
+-    static UsdShadeAttributeVector GetValueProducingAttributes(
+-        UsdShadeOutput const &output,
+-        bool shaderOutputsOnly = false);
++    // USDSHADE_API
++    // static UsdShadeAttributeVector GetValueProducingAttributes(
++    //     UsdShadeInput const &input,
++    //     bool shaderOutputsOnly = false);
++    // /// \overload
++    // USDSHADE_API
++    // static UsdShadeAttributeVector GetValueProducingAttributes(
++    //     UsdShadeOutput const &output,
++    //     bool shaderOutputsOnly = false);
+ };
+
+ PXR_NAMESPACE_CLOSE_SCOPE

@@ -1,0 +1,125 @@
+--- ./pxr/usd/usd/prim.h
++++ ./pxr/usd/usd/prim.h
+@@ -182,8 +182,8 @@
+     /// **not** advisable to retain a PrimStack for expedited metadata value
+     /// resolution, since not all metadata resolves with simple "strongest
+     /// opinion wins" semantics.
+-    USD_API
+-    SdfPrimSpecHandleVector GetPrimStack() const;
++    // USD_API
++    // SdfPrimSpecHandleVector GetPrimStack() const;
+
+     /// Return all the authored SdfPrimSpecs that may contain opinions for this
+     /// prim in order from strong to weak paired with the cumulative layer 
+@@ -301,8 +301,8 @@
+
+     /// Alias for the "predicate" function parameter passed into the various
+     /// Get{Authored}{PropertyNames,Properties} methods.
+-    using PropertyPredicateFunc = 
+-        std::function<bool (const TfToken &propertyName)>;
++    // using PropertyPredicateFunc = 
++    //     std::function<bool (const TfToken &propertyName)>;
+
+     /// Return all of this prim's property names (attributes and relationships),
+     /// including all builtin properties.
+@@ -315,9 +315,9 @@
+     /// 
+     /// \sa GetAuthoredPropertyNames()
+     /// \sa UsdProperty::IsAuthored()
+-    USD_API
+-    TfTokenVector GetPropertyNames(
+-        const PropertyPredicateFunc &predicate={}) const;
++    // USD_API
++    // TfTokenVector GetPropertyNames(
++    //     const PropertyPredicateFunc &predicate={}) const;
+
+     /// Return this prim's property names (attributes and relationships) that
+     /// have authored scene description, ordered according to the strongest
+@@ -332,9 +332,9 @@
+     ///
+     /// \sa GetPropertyNames()
+     /// \sa UsdProperty::IsAuthored() 
+-    USD_API
+-    TfTokenVector GetAuthoredPropertyNames(
+-        const PropertyPredicateFunc &predicate={}) const;
++    // USD_API
++    // TfTokenVector GetAuthoredPropertyNames(
++    //     const PropertyPredicateFunc &predicate={}) const;
+
+     /// Return all of this prim's properties (attributes and relationships),
+     /// including all builtin properties, ordered by name according to the
+@@ -379,9 +379,9 @@
+     ///
+     /// \sa GetAuthoredProperties()
+     /// \sa UsdProperty::IsAuthored()
+-    USD_API
+-    std::vector<UsdProperty> GetProperties(
+-        const PropertyPredicateFunc &predicate={}) const;
++    // USD_API
++    // std::vector<UsdProperty> GetProperties(
++    //     const PropertyPredicateFunc &predicate={}) const;
+
+     /// Return this prim's properties (attributes and relationships) that have
+     /// authored scene description, ordered by name according to the strongest
+@@ -396,9 +396,9 @@
+     ///
+     /// \sa GetProperties()
+     /// \sa UsdProperty::IsAuthored()
+-    USD_API
+-    std::vector<UsdProperty> GetAuthoredProperties(
+-        const PropertyPredicateFunc &predicate={}) const;
++    // USD_API
++    // std::vector<UsdProperty> GetAuthoredProperties(
++    //     const PropertyPredicateFunc &predicate={}) const;
+
+     /// Return this prim's properties that are inside the given property
+     /// namespace ordered according to the strongest propertyOrder statement in
+@@ -1288,11 +1288,11 @@
+     /// return them in an arbitrary order.  If \p recurseOnSources is true,
+     /// act as if this function was invoked on the connected prims and owning
+     /// prims of connected properties also and return the union.
+-    USD_API
+-    SdfPathVector
+-    FindAllAttributeConnectionPaths(
+-        std::function<bool (UsdAttribute const &)> const &pred = nullptr,
+-        bool recurseOnSources = false) const;
++    // USD_API
++    // SdfPathVector
++    // FindAllAttributeConnectionPaths(
++    //     std::function<bool (UsdAttribute const &)> const &pred = nullptr,
++    //     bool recurseOnSources = false) const;
+
+     // --------------------------------------------------------------------- //
+     /// \name Relationships
+@@ -1382,11 +1382,11 @@
+     /// function was invoked on the targeted prims and owning prims of targeted
+     /// properties also (but not of forwarding relationships) and return the
+     /// union.
+-    USD_API
+-    SdfPathVector
+-    FindAllRelationshipTargetPaths(
+-        std::function<bool (UsdRelationship const &)> const &pred = nullptr,
+-        bool recurseOnTargets = false) const;
++    // USD_API
++    // SdfPathVector
++    // FindAllRelationshipTargetPaths(
++    //     std::function<bool (UsdRelationship const &)> const &pred = nullptr,
++    //     bool recurseOnTargets = false) const;
+
+     // --------------------------------------------------------------------- //
+     /// \name Payload Authoring 
+@@ -1736,10 +1736,10 @@
+     _MakeProperties(const TfTokenVector &names) const;
+
+     // Helper for Get{Authored}{PropertyNames,Properties} 
+-    TfTokenVector _GetPropertyNames(
+-        bool onlyAuthored,
+-        bool applyOrder=true,
+-        const PropertyPredicateFunc &predicate={}) const;
++    // TfTokenVector _GetPropertyNames(
++    //     bool onlyAuthored,
++    //     bool applyOrder=true,
++    //     const PropertyPredicateFunc &predicate={}) const;
+
+     // Helper for Get(Authored)PropertiesInNamespace.
+     std::vector<UsdProperty>

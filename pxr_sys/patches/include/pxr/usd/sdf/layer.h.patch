@@ -1,0 +1,62 @@
+--- ./pxr/usd/sdf/layer.h
++++ ./pxr/usd/sdf/layer.h
+@@ -113,7 +113,7 @@
+     SDF_API const SdfSchemaBase& GetSchema() const;
+
+     /// Returns the file format used by this layer.
+-    SDF_API const SdfFileFormatConstPtr& GetFileFormat() const;
++    // SDF_API const SdfFileFormatConstPtr& GetFileFormat() const;
+
+     /// Type for specifying additional file format-specific arguments to
+     /// layer API.
+@@ -765,12 +765,12 @@
+     /// Callback function for Traverse. This callback will be invoked with
+     /// the path of each spec that is visited.
+     /// \sa Traverse
+-    typedef std::function<void(const SdfPath&)> TraversalFunction;
++    // typedef std::function<void(const SdfPath&)> TraversalFunction;
+
+     // Traverse will perform a traversal of the scene description hierarchy
+     // rooted at \a path, calling \a func on each spec that it finds.
+-    SDF_API
+-    void Traverse(const SdfPath& path, const TraversalFunction& func);
++    // SDF_API
++    // void Traverse(const SdfPath& path, const TraversalFunction& func);
+
+     /// @}
+
+@@ -1048,18 +1048,18 @@
+     /// @{
+
+     // Type for root prims view.
+-    typedef SdfPrimSpecView RootPrimsView;
++    // typedef SdfPrimSpecView RootPrimsView;
+
+     /// Returns a vector of the layer's root prims
+-    SDF_API
+-    RootPrimsView GetRootPrims() const;
++    // SDF_API
++    // RootPrimsView GetRootPrims() const;
+
+     /// Sets a new vector of root prims.
+     /// You can re-order, insert and remove prims but cannot 
+     /// rename them this way.  If any of the listed prims have 
+     /// an existing owner, they will be reparented.
+-    SDF_API
+-    void SetRootPrims(const SdfPrimSpecHandleVector &rootPrims);
++    // SDF_API
++    // void SetRootPrims(const SdfPrimSpecHandleVector &rootPrims);
+
+     /// Adds a new root prim at the given index.
+     /// If the index is -1, the prim is inserted at the end.
+@@ -1898,8 +1898,8 @@
+
+     // Helper method for Traverse. Visits the children of \a path using the
+     // specified \a ChildPolicy.
+-    template <typename ChildPolicy>
+-    void _TraverseChildren(const SdfPath &path, const TraversalFunction &func);
++    // template <typename ChildPolicy>
++    // void _TraverseChildren(const SdfPath &path, const TraversalFunction &func);
+
+ private:
+     SdfLayerHandle _self;

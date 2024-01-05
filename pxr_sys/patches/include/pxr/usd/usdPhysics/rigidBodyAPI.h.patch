@@ -1,0 +1,24 @@
+--- ./pxr/usd/usdPhysics/rigidBodyAPI.h
++++ ./pxr/usd/usdPhysics/rigidBodyAPI.h
+@@ -325,7 +325,7 @@
+
+     /// Mass information function signature, for given UsdPrim gather MassInformation
+     typedef MassInformation MassInformationFnSig(const UsdPrim&);    
+-    typedef std::function<MassInformationFnSig> MassInformationFn;
++    // typedef std::function<MassInformationFnSig> MassInformationFn;
+
+     /// Compute mass properties of the rigid body
+     /// \p diagonalInertia Computed diagonal of the inertial tensor for the rigid body.
+@@ -333,9 +333,9 @@
+     /// \p principalAxes Inertia tensor's principal axes orienttion for the rigid body.
+     /// \p massInfoFn Callback function to get collision mass information.
+     /// \return Computed mass of the rigid body
+-    USDPHYSICS_API
+-    float ComputeMassProperties(GfVec3f* diagonalInertia, GfVec3f* com, GfQuatf* principalAxes, 
+-        const MassInformationFn& massInfoFn) const;
++    // USDPHYSICS_API
++    // float ComputeMassProperties(GfVec3f* diagonalInertia, GfVec3f* com, GfQuatf* principalAxes, 
++    //     const MassInformationFn& massInfoFn) const;
+
+ };
+

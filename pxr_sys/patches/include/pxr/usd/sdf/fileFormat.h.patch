@@ -1,0 +1,30 @@
+--- ./pxr/usd/sdf/fileFormat.h
++++ ./pxr/usd/sdf/fileFormat.h
+@@ -265,9 +265,9 @@
+     /// Returns the file format instance with the specified \p formatId
+     /// identifier. If a format with a matching identifier is not found, this
+     /// returns a null file format pointer.
+-    SDF_API 
+-    static SdfFileFormatConstPtr FindById(
+-        const TfToken& formatId);
++    // SDF_API 
++    // static SdfFileFormatConstPtr FindById(
++    //     const TfToken& formatId);
+
+     /// Returns the file format instance that supports the extension for
+     /// \p path.  If a format with a matching extension is not found, this
+@@ -278,10 +278,10 @@
+     /// the file format that is registered as the primary plugin will be
+     /// returned. Otherwise, the file format whose target matches \p target
+     /// will be returned.
+-    SDF_API
+-    static SdfFileFormatConstPtr FindByExtension(
+-        const std::string& path,
+-        const std::string& target = std::string());
++    // SDF_API
++    // static SdfFileFormatConstPtr FindByExtension(
++    //     const std::string& path,
++    //     const std::string& target = std::string());
+
+     /// Returns a file format instance that supports the extension for \p
+     /// path and whose target matches one of those specified by the given

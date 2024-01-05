@@ -1,0 +1,130 @@
+name: Rust
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+concurrency:
+  group: "${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}"
+  cancel-in-progress: true
+
+env:
+  CARGO_TERM_COLOR: always
+  BUILD_LIB_PACKAGE_NAME: pxr_build
+  SYS_LIB_PACKAGE_NAME: pxr_sys
+  LIB_PACKAGE_NAME: pxr
+
+jobs:
+  rustfmt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt
+
+      ## cargo fmt
+      - name: cargo fmt
+        run: cargo fmt --all --check --verbose
+
+  cargo:
+    needs: rustfmt
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        toolchain:
+          - "1.70" # Minimal supported Rust version (MSRV)
+          - stable
+          - beta
+    steps:
+      - uses: actions/checkout@v4
+      - uses: Swatinem/rust-cache@v2
+        with:
+          save-if: ${{ github.event_name == 'push'}}
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: ${{ matrix.toolchain }}
+          components: clippy
+
+      ## cargo check
+      - name: cargo check
+        run: cargo check --workspace --all-targets --verbose
+
+      # ## cargo test
+      # - name: cargo test
+      #   run: cargo test --workspace --all-targets --verbose
+
+      # ## cargo test --doc
+      # - name: cargo test --doc
+      #   run: cargo test --workspace --doc --verbose
+
+      # ## cargo clippy
+      # - name: cargo clippy (stable only)
+      #   if: ${{ matrix.toolchain == 'stable' }}
+      #   run: cargo clippy --workspace --all-targets --no-deps --verbose -- --deny warnings
+
+      # ## cargo doc
+      # - name: doc --document-private-items (stable only)
+      #   if: ${{ matrix.toolchain == 'stable' }}
+      #   run: cargo doc --workspace --no-deps --document-private-items --verbose
+
+  deny:
+    needs: cargo
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: EmbarkStudios/cargo-deny-action@v1
+        with:
+          command: check bans licenses sources
+
+  publish:
+    if: ${{ github.event_name == 'release' }}
+    needs:
+      - cargo
+      - deny
+    runs-on: ubuntu-latest
+    env:
+      CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+
+      ## Publish to crates.io
+      - name: Publish crate (build library)
+        if: ${{ env.CARGO_REGISTRY_TOKEN != '' }}
+        run: cargo publish --no-verify --package ${{ env.BUILD_LIB_PACKAGE_NAME }} --token ${{ secrets.CARGO_REGISTRY_TOKEN }}
+      - name: Publish crate (sys library)
+        if: ${{ env.CARGO_REGISTRY_TOKEN != '' }}
+        run: cargo publish --no-verify --package ${{ env.SYS_LIB_PACKAGE_NAME }} --token ${{ secrets.CARGO_REGISTRY_TOKEN }}
+      - name: Publish crate (library)
+        if: ${{ env.CARGO_REGISTRY_TOKEN != '' }}
+        run: cargo publish --no-verify --package ${{ env.LIB_PACKAGE_NAME }} --token ${{ secrets.CARGO_REGISTRY_TOKEN }}
+
+  # codecov:
+  #   needs: cargo
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: Swatinem/rust-cache@v2
+  #       with:
+  #         save-if: ${{ github.event_name == 'push'}}
+  #     - uses: dtolnay/rust-toolchain@stable
+  #     - uses: taiki-e/install-action@cargo-llvm-cov
+
+  #     ## Generate coverage with cargo llvm-cov
+  #     - name: Generate coverage
+  #       run: cargo llvm-cov --workspace --lcov --output-path lcov.info
+
+  #     ## Upload coverage to codecov.io
+  #     - name: Upload coverage
+  #       uses: codecov/codecov-action@v3
+  #       with:
+  #         token: ${{ secrets.CODECOV_TOKEN }}
+  #         files: lcov.info
+  #         fail_ci_if_error: true

@@ -1,0 +1,13 @@
+--- ./pxr/usd/usd/apiSchemaBase.h
++++ ./pxr/usd/usd/apiSchemaBase.h
+@@ -139,8 +139,8 @@
+     }
+
+     /// Destructor.
+-    USD_API
+-    virtual ~UsdAPISchemaBase() = 0;
++    // USD_API
++    // virtual ~UsdAPISchemaBase() = 0;
+
+     /// Return a vector of names of all pre-declared attributes for this schema
+     /// class and all its ancestor classes.  Does not include attributes that

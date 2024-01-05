@@ -1,0 +1,15 @@
+--- ./pxr/usd/usd/property.h
++++ ./pxr/usd/usd/property.h
+@@ -82,9 +82,9 @@
+     /// attributes, you should instead retain a \c UsdAttributeQuery .
+     ///
+     /// \sa UsdClipsAPI
+-    USD_API
+-    SdfPropertySpecHandleVector GetPropertyStack(
+-        UsdTimeCode time = UsdTimeCode::Default()) const;
++    // USD_API
++    // SdfPropertySpecHandleVector GetPropertyStack(
++    //     UsdTimeCode time = UsdTimeCode::Default()) const;
+
+     /// Returns a strength-ordered list of property specs that provide
+     /// opinions for this property paired with the cumulative layer offset from

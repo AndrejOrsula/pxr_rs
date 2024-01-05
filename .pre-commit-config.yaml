@@ -1,0 +1,61 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+
+exclude: Cargo.lock|.*/include/.*|.*/patches/.*
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: check-case-conflict
+      - id: check-executables-have-shebangs
+      - id: check-merge-conflict
+      - id: check-shebang-scripts-are-executable
+        exclude: \.rs$
+      - id: check-symlinks
+      - id: check-toml
+      - id: check-vcs-permalinks
+      - id: check-xml
+      - id: check-yaml
+      - id: destroyed-symlinks
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: fix-byte-order-marker
+      - id: mixed-line-ending
+      - id: sort-simple-yaml
+      - id: trailing-whitespace
+
+  - repo: https://github.com/lovesegfault/beautysh
+    rev: v6.2.1
+    hooks:
+      - id: beautysh
+
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.2.6
+    hooks:
+      - id: codespell
+        args: ["--ignore-words-list", "crate"]
+        exclude: Cargo.lock
+
+  - repo: https://github.com/executablebooks/mdformat
+    rev: 0.7.17
+    hooks:
+      - id: mdformat
+
+  - repo: https://github.com/AndrejOrsula/pre-commit-cargo
+    rev: 0.3.0
+    hooks:
+      - id: cargo-fmt
+      - id: cargo-update
+      # - id: cargo-clippy
+      #   args: ["--workspace", "--all-targets", "--", "--deny=warnings"]
+      - id: cargo-check
+        args: ["--workspace", "--all-targets"]
+      # - id: cargo-test
+      #   args: ["--workspace", "--all-targets"]
+      # - id: cargo-test-doc
+      #   args: ["--workspace"]
+      # - id: cargo-doc
+      #   args: ["--workspace", "--no-deps", "--document-private-items"]
+      # - id: cargo-miri-test
+      #   args: ["--workspace"]
+      - id: cargo-deny-check

@@ -1,0 +1,68 @@
+[package]
+name = "pxr_sys"
+authors.workspace = true
+categories.workspace = true
+description.workspace = true
+edition.workspace = true
+keywords.workspace = true
+license.workspace = true
+readme.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+version.workspace = true
+links = "usd"
+
+[dependencies]
+autocxx = { workspace = true }
+cpp = { workspace = true }
+cxx = { workspace = true }
+derive_builder = { workspace = true }
+derive_more = { workspace = true }
+half = { workspace = true }
+moveit = { workspace = true }
+once_cell = { workspace = true }
+semver = { workspace = true }
+thiserror = { workspace = true }
+
+[build-dependencies]
+anyhow = { workspace = true }
+autocxx-build = { workspace = true }
+built_different = { workspace = true }
+cpp_build = { workspace = true }
+cxx-build = { workspace = true }
+pxr_build = { workspace = true }
+python-config-rs = { workspace = true, optional = true }
+walkdir = { workspace = true }
+
+[features]
+# TODO: Consider removing some default features like "link_python" and "alembic"
+default = [
+    "vendored",
+    "alembic",
+    "draco",
+    "link_python",
+    "materialx",
+    "openvdb",
+    "usd_imaging",
+]
+vendored = []
+use_cxx11_abi = []
+monolithic_lib = []
+
+alembic = []
+draco = []
+embree = []
+hdf5 = []
+link_python = ["python-config-rs"]
+materialx = []
+opencolorio = []
+openimageio = []
+openvdb = []
+prman = []
+ptex = []
+usd_imaging = []
+
+[lib]
+name = "pxr_sys"
+path = "src/lib.rs"
+crate-type = ["rlib"]
