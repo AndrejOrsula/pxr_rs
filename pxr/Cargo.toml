@@ -16,8 +16,8 @@ thiserror = { workspace = true }
 pxr_sys = { workspace = true }
 
 [features]
-# TODO: Wrap features of pxr_sys
-default = []
+default = ["vendored"]
+vendored = ["pxr_sys/vendored"]
 
 [lib]
 name = "pxr"
