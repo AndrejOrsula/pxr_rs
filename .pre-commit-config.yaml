@@ -46,16 +46,12 @@ repos:
     hooks:
       - id: cargo-fmt
       - id: cargo-update
-      # - id: cargo-clippy
-      #   args: ["--workspace", "--all-targets", "--", "--deny=warnings"]
+      - id: cargo-clippy
+        args: ["--workspace", "--all-targets", "--", "--deny=warnings"]
       - id: cargo-check
         args: ["--workspace", "--all-targets"]
-      # - id: cargo-test
-      #   args: ["--workspace", "--all-targets"]
+      - id: cargo-test
+        args: ["--workspace", "--all-targets"]
       # - id: cargo-test-doc
-      #   args: ["--workspace"]
-      # - id: cargo-doc
-      #   args: ["--workspace", "--no-deps", "--document-private-items"]
-      # - id: cargo-miri-test
       #   args: ["--workspace"]
       - id: cargo-deny-check
