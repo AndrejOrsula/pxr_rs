@@ -23,7 +23,7 @@ The workspace contains these packages:
 
 - **[pxr_build](pxr_build):** Helper crate for building OpenUSD bindings
 - **[pxr_sys](pxr_sys):** Unsafe Rust bindings for OpenUSD
-- **[pxr](pxr_rs):** Safe Rust bindings for OpenUSD (WIP)
+- **[pxr](pxr):** Safe Rust bindings for OpenUSD (WIP)
 
 Most of the bindings are automatically generated from the OpenUSD headers using [autocxx](https://github.com/google/autocxx), while some are hand-written via [rust-cpp](https://github.com/mystor/rust-cpp) and additional macros inside [pxr_build](pxr_build). The C++ library of OpenUSD can be automatically downloaded and compiled during the cargo build process if the `vendored` feature is enabled.
 
