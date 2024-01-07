@@ -11,7 +11,7 @@ resolver = "2"
 
 [workspace.package]
 authors = ["Andrej Orsula <orsula.andrej@gmail.com>"]
-categories = ["simulation"]
+categories = ["rendering::data-formats", "simulation"]
 description = "Rust interface for OpenUSD"
 edition = "2021"
 keywords = ["pxr", "usd", "vfx", "simulation"]
