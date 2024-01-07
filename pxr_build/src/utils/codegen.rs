@@ -7,8 +7,8 @@ pub const HEADER: &str = "\
 ";
 
 pub fn codegen_write(code: &str, out: impl AsRef<Path>) -> anyhow::Result<()> {
-    // Format the generated code
-    let code = rustfmt(code)?;
+    // Try formatting the generated code if rustfmt is available.
+    let code = rustfmt(code).unwrap_or_else(|_| code.to_string());
 
     // Prefix the code with a header (disclaimer)
     let code = format!("{HEADER}\n{code}");

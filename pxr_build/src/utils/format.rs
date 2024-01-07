@@ -60,6 +60,6 @@ fn rustfmt_path() -> io::Result<PathBuf> {
     }
     match which::which("rustfmt") {
         Ok(p) => Ok(p),
-        Err(e) => Err(io::Error::new(io::ErrorKind::Other, format!("{}", e))),
+        Err(e) => Err(io::Error::new(io::ErrorKind::Other, e)),
     }
 }

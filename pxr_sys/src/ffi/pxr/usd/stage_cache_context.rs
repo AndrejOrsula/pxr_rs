@@ -19,6 +19,7 @@ crate::macros::impl_vector_element!(
 );
 
 impl UsdStageCacheContext {
+    #[must_use]
     pub fn new(cache: &pxr::UsdStageCache) -> Pin<Box<UsdStageCacheContext>> {
         let stage_cache_context = unsafe {
             cpp!([cache as "pxr::UsdStageCache *"] -> UsdStageCacheContext as "pxr::UsdStageCacheContext" {

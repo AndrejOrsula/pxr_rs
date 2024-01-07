@@ -18,6 +18,7 @@ crate::macros::impl_vector_element!(
 );
 
 impl SdfCleanupEnabler {
+    #[must_use]
     pub fn new() -> Pin<Box<SdfCleanupEnabler>> {
         Box::pin(unsafe {
             cpp!([] -> SdfCleanupEnabler as "pxr::SdfCleanupEnabler" {
@@ -26,6 +27,7 @@ impl SdfCleanupEnabler {
         })
     }
 
+    #[must_use]
     pub fn IsCleanupEnabled(&self) -> bool {
         unsafe {
             cpp!([self as "const pxr::SdfCleanupEnabler *"] -> bool as "bool" {

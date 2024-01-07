@@ -3,6 +3,7 @@ use cpp::cpp;
 use std::pin::Pin;
 
 impl pxr::UsdUtilsStageCache {
+    #[must_use]
     pub fn Get1() -> Pin<Box<pxr::UsdStageCache>> {
         let stage_cache = unsafe {
             cpp!([]

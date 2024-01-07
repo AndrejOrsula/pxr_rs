@@ -36,7 +36,7 @@ macro_rules! gen_vt_value {
                     } else {
                         Err(format!(
                             "Cannot cast C++ type pxr::VtValue<{}> to Rust type $rs_type.",
-                            value.GetTypeName().to_string()
+                            value.GetTypeName()
                         ))
                     }
                 }
@@ -54,7 +54,7 @@ macro_rules! gen_vt_value {
                     } else {
                         Err(format!(
                             "Cannot cast C++ type pxr::VtValue<{}> to Rust type $rs_type.",
-                            value.GetTypeName().to_string()
+                            value.GetTypeName()
                         ))
                     }
                 }

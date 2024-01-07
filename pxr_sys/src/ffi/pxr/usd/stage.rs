@@ -31,12 +31,12 @@ crate::macros::impl_pinned_deref_mut![
 impl Deref for pxr::UsdStageRefPtr {
     type Target = pxr::UsdStage;
     fn deref(&self) -> &Self::Target {
-        unsafe { transmute(*(self as *const pxr::UsdStageRefPtr as *const *const pxr::UsdStage)) }
+        unsafe { &*(*(self as *const pxr::UsdStageRefPtr).cast::<*const pxr::UsdStage>()) }
     }
 }
 impl DerefMut for pxr::UsdStageRefPtr {
     fn deref_mut(&mut self) -> &mut Self::Target {
-        unsafe { transmute(*(self as *mut pxr::UsdStageRefPtr as *mut *mut pxr::UsdStage)) }
+        unsafe { &mut *(*(self as *mut pxr::UsdStageRefPtr).cast::<*mut pxr::UsdStage>()) }
     }
 }
 
@@ -44,12 +44,12 @@ impl DerefMut for pxr::UsdStageRefPtr {
 impl Deref for pxr::UsdStageWeakPtr {
     type Target = pxr::UsdStage;
     fn deref(&self) -> &Self::Target {
-        unsafe { transmute(*(self as *const pxr::UsdStageWeakPtr as *const *const pxr::UsdStage)) }
+        unsafe { &*(*(self as *const pxr::UsdStageWeakPtr).cast::<*const pxr::UsdStage>()) }
     }
 }
 impl DerefMut for pxr::UsdStageWeakPtr {
     fn deref_mut(&mut self) -> &mut Self::Target {
-        unsafe { transmute(*(self as *mut pxr::UsdStageWeakPtr as *mut *mut pxr::UsdStage)) }
+        unsafe { &mut *(*(self as *mut pxr::UsdStageWeakPtr).cast::<*mut pxr::UsdStage>()) }
     }
 }
 

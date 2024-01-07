@@ -14,12 +14,12 @@ crate::macros::impl_pinned_deref_mut![
 impl Deref for pxr::SdfLayerRefPtr {
     type Target = pxr::SdfLayer;
     fn deref(&self) -> &Self::Target {
-        unsafe { transmute(*(self as *const Self as *const *const Self::Target)) }
+        unsafe { &*(*(self as *const Self).cast::<*const Self::Target>()) }
     }
 }
 impl DerefMut for pxr::SdfLayerRefPtr {
     fn deref_mut(&mut self) -> &mut Self::Target {
-        unsafe { transmute(*(self as *mut Self as *mut *mut Self::Target)) }
+        unsafe { &mut *(*(self as *mut Self).cast::<*mut Self::Target>()) }
     }
 }
 
@@ -27,12 +27,12 @@ impl DerefMut for pxr::SdfLayerRefPtr {
 impl Deref for pxr::SdfLayerHandle {
     type Target = pxr::SdfLayer;
     fn deref(&self) -> &Self::Target {
-        unsafe { transmute(*(self as *const Self as *const *const Self::Target)) }
+        unsafe { &*(*(self as *const Self).cast::<*const Self::Target>()) }
     }
 }
 impl DerefMut for pxr::SdfLayerHandle {
     fn deref_mut(&mut self) -> &mut Self::Target {
-        unsafe { transmute(*(self as *mut Self as *mut *mut Self::Target)) }
+        unsafe { &mut *(*(self as *mut Self).cast::<*mut Self::Target>()) }
     }
 }
 

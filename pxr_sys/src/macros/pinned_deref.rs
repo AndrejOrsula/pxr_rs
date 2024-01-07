@@ -5,14 +5,14 @@ macro_rules! impl_pinned_deref {
         #[automatically_derived]
         impl $source_type {
             #[inline(always)]
-            pub fn as_deref<'a>(
+            #[must_use] pub fn as_deref<'a>(
                 self: &'a ::std::pin::Pin<Box<Self>>,
             ) -> ::std::pin::Pin<&'a $target_type> {
                 self.as_ref().map_deref()
             }
 
             #[inline(always)]
-            pub fn map_deref<'a>(
+            #[must_use] pub fn map_deref<'a>(
                 self: ::std::pin::Pin<&'a Self>,
             ) -> ::std::pin::Pin<&'a $target_type> {
                 unsafe { self.map_unchecked(|x| x.deref()) }
@@ -40,7 +40,7 @@ macro_rules! impl_pinned_deref_mut {
             }
 
             #[inline(always)]
-            pub fn map_deref_mut<'a>(
+            #[must_use] pub fn map_deref_mut<'a>(
                 self: ::std::pin::Pin<&'a mut Self>,
             ) -> ::std::pin::Pin<&'a mut $target_type> {
                 unsafe { self.map_unchecked_mut(|x| x.deref_mut()) }

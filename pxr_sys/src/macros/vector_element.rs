@@ -1,4 +1,4 @@
-/// Implement VectorElement for a type (this should be done automatically by autocxx but it doesn't work for certain types - no idea why)
+/// Implement `VectorElement` for a type (this should be done automatically by autocxx but it doesn't work for certain types - no idea why)
 macro_rules! impl_vector_element {
     ([$kind:ident] $segment:expr, $name:expr, $ty:ty) => {
         cxx::const_assert_eq!(0, std::mem::size_of::<cxx::CxxVector<$ty>>());

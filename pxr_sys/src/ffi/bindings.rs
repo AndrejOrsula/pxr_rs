@@ -1,4 +1,5 @@
 //! Raw FFI bindings from `bindgen` and `autocxx`.
+#![allow(clippy::all)]
 use autocxx::prelude::*;
 pub use ffi_autocxx::*;
 
