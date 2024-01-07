@@ -50,7 +50,7 @@ jobs:
       - uses: dtolnay/rust-toolchain@master
         with:
           toolchain: ${{ matrix.toolchain }}
-          components: clippy
+          components: rustfmt, clippy
       - uses: rui314/setup-mold@v1
 
       ## Install dependencies
