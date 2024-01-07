@@ -2,9 +2,9 @@
 
 <p align="left">
   <a href="https://crates.io/crates/pxr">                                        <img alt="crates.io" src="https://img.shields.io/crates/v/pxr_rs.svg"></a>
-  <!-- <a href="https://github.com/AndrejOrsula/pxr_rs/actions/workflows/rust.yml">   <img alt="Rust"      src="https://github.com/AndrejOrsula/pxr_rs/actions/workflows/rust.yml/badge.svg"></a> -->
+  <a href="https://github.com/AndrejOrsula/pxr_rs/actions/workflows/rust.yml">   <img alt="Rust"      src="https://github.com/AndrejOrsula/pxr_rs/actions/workflows/rust.yml/badge.svg"></a>
   <a href="https://github.com/AndrejOrsula/pxr_rs/actions/workflows/docker.yml"> <img alt="Docker"    src="https://github.com/AndrejOrsula/pxr_rs/actions/workflows/docker.yml/badge.svg"></a>
-  <!-- <a href="https://codecov.io/gh/AndrejOrsula/pxr_rs">                           <img alt="codecov"   src="https://codecov.io/gh/AndrejOrsula/pxr_rs/branch/main/graph/badge.svg"></a> -->
+  <a href="https://codecov.io/gh/AndrejOrsula/pxr_rs">                           <img alt="codecov"   src="https://codecov.io/gh/AndrejOrsula/pxr_rs/branch/main/graph/badge.svg"></a>
 </p>
 
 Rust interface for [OpenUSD](https://openusd.org).
