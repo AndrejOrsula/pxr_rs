@@ -11,6 +11,7 @@ crate::macros::impl_vector_element!(
 
 // TODO: Make generic
 impl pxr::UsdGeomXformOp {
+    #[must_use]
     pub fn set_vec3f(self: Pin<&mut Self>, value: &pxr::GfVec3f) -> bool {
         unsafe {
             cpp!([self as "pxr::UsdGeomXformOp *", value as "const pxr::GfVec3f *"] -> bool as "bool" {

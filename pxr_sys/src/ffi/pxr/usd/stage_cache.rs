@@ -2,6 +2,7 @@ use crate::pxr;
 use cpp::cpp;
 
 impl pxr::UsdStageCache_Id {
+    #[must_use]
     pub fn IsValid(&self) -> bool {
         unsafe {
             cpp!([self as "const pxr::UsdStageCache::Id *"] -> bool as "bool" {

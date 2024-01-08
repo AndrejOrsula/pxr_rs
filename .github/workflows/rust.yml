@@ -50,29 +50,58 @@ jobs:
       - uses: dtolnay/rust-toolchain@master
         with:
           toolchain: ${{ matrix.toolchain }}
-          components: clippy
+          components: rustfmt, clippy
+
+      ## Install dependencies
+      - run: sudo apt-get update && sudo apt-get install -yq --no-install-recommends cmake libarchive-dev libgl-dev libglu-dev libilmbase-dev libssl-dev libx11-dev libxt-dev
+      - uses: KyleMayes/install-llvm-action@v1
+        with:
+          version: "15.0"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      ## Use mold linker
+      - uses: rui314/setup-mold@v1
 
       ## cargo check
       - name: cargo check
         run: cargo check --workspace --all-targets --verbose
 
-      # ## cargo test
-      # - name: cargo test
-      #   run: cargo test --workspace --all-targets --verbose
+      ## cargo test
+      - name: cargo test
+        run: cargo test --workspace --all-targets --verbose
 
       # ## cargo test --doc
       # - name: cargo test --doc
       #   run: cargo test --workspace --doc --verbose
 
-      # ## cargo clippy
-      # - name: cargo clippy (stable only)
-      #   if: ${{ matrix.toolchain == 'stable' }}
-      #   run: cargo clippy --workspace --all-targets --no-deps --verbose -- --deny warnings
+      ## [stable] cargo clippy
+      - name: stable | cargo clippy
+        if: ${{ matrix.toolchain == 'stable' }}
+        run: cargo clippy --workspace --all-targets --no-deps --verbose -- --deny warnings
 
-      # ## cargo doc
-      # - name: doc --document-private-items (stable only)
-      #   if: ${{ matrix.toolchain == 'stable' }}
-      #   run: cargo doc --workspace --no-deps --document-private-items --verbose
+      ## [stable] cargo doc
+      - name: stable | cargo doc --document-private-items
+        if: ${{ matrix.toolchain == 'stable' }}
+        run: cargo doc --workspace --no-deps --document-private-items --verbose
+
+      ## [stable] Code coverage
+      - name: stable | Install cargo llvm-cov for code coverage
+        uses: taiki-e/install-action@cargo-llvm-cov
+        if: ${{ matrix.toolchain == 'stable' }}
+      ## [stable] Generate coverage with cargo llvm-cov
+      - name: stable | Generate coverage
+        if: ${{ matrix.toolchain == 'stable' }}
+        run: cargo llvm-cov --workspace --lcov --output-path lcov.info
+      ## [stable] Upload coverage to codecov.io
+      - name: stable | Upload coverage
+        if: ${{ matrix.toolchain == 'stable' }}
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: lcov.info
+          fail_ci_if_error: true
 
   deny:
     needs: cargo
@@ -105,26 +134,3 @@ jobs:
       - name: Publish crate (library)
         if: ${{ env.CARGO_REGISTRY_TOKEN != '' }}
         run: cargo publish --no-verify --package ${{ env.LIB_PACKAGE_NAME }} --token ${{ secrets.CARGO_REGISTRY_TOKEN }}
-
-  # codecov:
-  #   needs: cargo
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #     - uses: Swatinem/rust-cache@v2
-  #       with:
-  #         save-if: ${{ github.event_name == 'push'}}
-  #     - uses: dtolnay/rust-toolchain@stable
-  #     - uses: taiki-e/install-action@cargo-llvm-cov
-
-  #     ## Generate coverage with cargo llvm-cov
-  #     - name: Generate coverage
-  #       run: cargo llvm-cov --workspace --lcov --output-path lcov.info
-
-  #     ## Upload coverage to codecov.io
-  #     - name: Upload coverage
-  #       uses: codecov/codecov-action@v3
-  #       with:
-  #         token: ${{ secrets.CODECOV_TOKEN }}
-  #         files: lcov.info
-  #         fail_ci_if_error: true

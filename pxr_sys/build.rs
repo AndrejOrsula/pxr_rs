@@ -132,7 +132,7 @@ const LINK_LIBS: &[&str] = &[
     "hioOpenVDB",
 ];
 
-/// List of libraries that are not USD libraries (not prefixed with `OPENUSD_LIB_PREFIX`)
+/// List of libraries that are not USD libraries (not prefixed with `PXR_LIB_PREFIX`)
 #[cfg(not(feature = "monolithic_lib"))]
 const NON_USD_LINK_LIBS: &[&str] = &["tbb"];
 
@@ -153,15 +153,15 @@ fn main() {
     println!("cargo:rerun-if-env-changed=OPENUSD_PATH");
 
     // Locate OpenUSD (either from environment variable or vendored)
-    let pxr_path = {
-        if let Some(pxr_path) = std::env::var_os("OPENUSD_PATH") {
-            let pxr_path = std::path::PathBuf::from(pxr_path);
+    let openusd_path = {
+        if let Some(openusd_path) = std::env::var_os("OPENUSD_PATH") {
+            let openusd_path = std::path::PathBuf::from(openusd_path);
             assert!(
-                pxr_path.is_dir(),
+                openusd_path.is_dir(),
                 "Environment variable `OPENUSD_PATH` does not point to a valid directory: `{}`",
-                pxr_path.display()
+                openusd_path.display()
             );
-            pxr_path
+            openusd_path
         } else {
             // If the `vendored` feature is not enabled, panic and instruct the user
             #[cfg(not(feature = "vendored"))]
@@ -173,7 +173,7 @@ fn main() {
 
             // If the `vendored` feature is enabled, download and compile OpenUSD (or use the previously cached installation)
             #[cfg(feature = "vendored")]
-            vendored::download_and_compile_pxr().unwrap()
+            vendored::download_and_compile_openusd()
         }
     };
     // Verify that the OpenUSD installation contains the required subdirectories
@@ -182,7 +182,7 @@ fn main() {
         if path.is_absolute() {
             continue;
         }
-        let link_path = pxr_path.join(path);
+        let link_path = openusd_path.join(path);
         assert!(
             link_path.is_dir(),
             "The OpenUSD installation does not contain the required link path: `{}`",
@@ -194,7 +194,7 @@ fn main() {
         if path.is_absolute() {
             continue;
         }
-        let include_path = pxr_path.join(path);
+        let include_path = openusd_path.join(path);
         assert!(
             include_path.is_dir(),
             "The OpenUSD installation does not contain the required include path: `{}`",
@@ -204,19 +204,19 @@ fn main() {
 
     // Configure link libraries
     #[cfg(feature = "monolithic_lib")]
-    for lib in LINK_LIBS.iter() {
+    for lib in LINK_LIBS {
         println!("cargo:rustc-link-lib=dylib={lib}");
     }
     #[cfg(not(feature = "monolithic_lib"))]
     {
         // ENV: Determine the prefix of OpenUSD libraries when linking against them (analogous to the "-DPXR_LIB_PREFIX" build argument of OpenUSD)
-        const DEFAULT_OPENUSD_LIB_PREFIX: &str = "lib";
-        println!("cargo:rerun-if-env-changed=OPENUSD_LIB_PREFIX");
-        let pxr_lib_prefix = std::env::var("OPENUSD_LIB_PREFIX")
-            .unwrap_or_else(|_| DEFAULT_OPENUSD_LIB_PREFIX.to_string());
+        const DEFAULT_PXR_LIB_PREFIX: &str = "lib";
+        println!("cargo:rerun-if-env-changed=PXR_LIB_PREFIX");
+        let pxr_lib_prefix =
+            std::env::var("PXR_LIB_PREFIX").unwrap_or_else(|_| DEFAULT_PXR_LIB_PREFIX.to_string());
         let pxr_lib_prefix = pxr_lib_prefix.trim_start_matches("lib");
 
-        for lib in LINK_LIBS.iter() {
+        for lib in LINK_LIBS {
             if NON_USD_LINK_LIBS.contains(lib) {
                 println!("cargo:rustc-link-lib=dylib={lib}");
             } else {
@@ -237,18 +237,18 @@ fn main() {
     // Cargo automatically adds link search paths to the dynamic library search path only for paths within OUT_DIR
     // Therefore, we create a symbolic link to the library within OUT_DIR instead if configuring link paths directly
     // In this way, dynamic library search paths do not need to be set manually when executing binaries through Cargo
-    let pxr_path_out_dir =
+    let openusd_path_out_dir =
         std::path::PathBuf::from(std::env::var_os("OUT_DIR").unwrap_or_else(|| unreachable!()))
             .join("deps")
             .join("lib")
-            .join(pxr_path.file_name().unwrap());
-    if !pxr_path_out_dir.is_dir() {
-        built_different::create_symlink(&pxr_path, &pxr_path_out_dir, true).unwrap();
+            .join(openusd_path.file_name().unwrap());
+    if !openusd_path_out_dir.is_dir() {
+        built_different::create_symlink(&openusd_path, &openusd_path_out_dir, true).unwrap();
     }
     for path in LINK_PATHS {
         let mut path = std::path::PathBuf::from(path);
         if path.is_relative() {
-            path = pxr_path_out_dir.join(path);
+            path = openusd_path_out_dir.join(path);
         }
         println!("cargo:rustc-link-search={}", path.display());
     }
@@ -265,27 +265,27 @@ fn main() {
     // Apply patches to the headers in a duplicate `include_patched_rs` directory
     built_different::apply_file_patches(
         "patches/include",
-        pxr_path.join("include"),
-        pxr_path.join("include_patched_rs"),
+        openusd_path.join("include"),
+        openusd_path.join("include_patched_rs"),
         true,
     )
     .unwrap();
 
     // Configure includes (the order matters here, i.e. local and patched headers should be included first)
-    let include_paths_pxr_local = [std::path::PathBuf::from("./include")];
-    let include_paths_pxr_patched = [pxr_path.join("include_patched_rs")];
-    let include_paths_pxr = INCLUDE_PATHS.iter().map(|path| {
+    let include_paths_openusd_local = [std::path::PathBuf::from("./include")];
+    let include_paths_openusd_patched = [openusd_path.join("include_patched_rs")];
+    let include_paths_openusd = INCLUDE_PATHS.iter().map(|path| {
         let path = std::path::PathBuf::from(path);
         if path.is_relative() {
-            pxr_path.join(path)
+            openusd_path.join(path)
         } else {
             path
         }
     });
-    let include_paths = include_paths_pxr_local
+    let include_paths = include_paths_openusd_local
         .into_iter()
-        .chain(include_paths_pxr_patched)
-        .chain(include_paths_pxr)
+        .chain(include_paths_openusd_patched)
+        .chain(include_paths_openusd)
         .collect::<Vec<_>>();
     #[cfg(feature = "link_python")]
     let include_paths = include_paths
@@ -294,21 +294,19 @@ fn main() {
         .collect::<Vec<_>>();
 
     // Expand macros to generate Rust code with `cpp` macros (workaround | `cpp!` macros cannot be nested)
-    bindings::expand_macros_cpp().unwrap();
+    bindings::expand_macros_cpp();
 
     // Compile C++ code with `cpp`
-    bindings::compile_cpp(&include_paths).unwrap();
+    bindings::compile_cpp(&include_paths);
 
     // Generate bindings with `autocxx`
-    bindings::generate_autocxx(&include_paths).unwrap();
+    bindings::generate_autocxx(&include_paths);
 }
 
 /// Module that contains functions for generating bindings.
 mod bindings {
-    pub fn generate_autocxx(
-        include_paths: impl IntoIterator<Item = impl AsRef<std::ffi::OsStr>>,
-    ) -> anyhow::Result<()> {
-        autocxx_build::Builder::new("src/ffi/bindings.rs", include_paths.into_iter())
+    pub fn generate_autocxx(include_paths: impl IntoIterator<Item = impl AsRef<std::ffi::OsStr>>) {
+        autocxx_build::Builder::new("src/ffi/bindings.rs", include_paths)
             .extra_clang_args(&[
                 "-x",
                 "c++",
@@ -318,7 +316,8 @@ mod bindings {
                 &format!("-D_GLIBCXX_USE_CXX11_ABI={}", super::USE_CXX11_ABI),
                 "-Wno-everything",
             ])
-            .build()?
+            .build()
+            .unwrap()
             .compiler("clang")
             .flag("-x")
             .flag("c++")
@@ -327,24 +326,20 @@ mod bindings {
             .flag("-pthread")
             .define("_GLIBCXX_USE_CXX11_ABI", Some(super::USE_CXX11_ABI))
             .flag("-Wno-everything")
-            .compile("pxr_sys_autocxx");
-        Ok(())
+            .compile("openusd_sys_autocxx");
     }
 
-    pub fn expand_macros_cpp() -> anyhow::Result<()> {
+    pub fn expand_macros_cpp() {
         pxr_build::codegen::codegen_vt_value(
             std::path::PathBuf::from("src")
                 .join("ffi")
                 .join("pxr")
                 .join("vt")
                 .join("value.rs"),
-        )?;
-        Ok(())
+        );
     }
 
-    pub fn compile_cpp(
-        include_paths: impl IntoIterator<Item = impl AsRef<std::path::Path>>,
-    ) -> anyhow::Result<()> {
+    pub fn compile_cpp(include_paths: impl IntoIterator<Item = impl AsRef<std::path::Path>>) {
         // Configure rebuild triggers based on file changes
         walkdir::WalkDir::new("src/ffi")
             .into_iter()
@@ -375,13 +370,12 @@ mod bindings {
             cpp_builder = cpp_builder.include(path);
         }
         cpp_builder.build("src/lib.rs");
-        Ok(())
     }
 }
 
 #[cfg(feature = "vendored")]
 mod vendored {
-    pub fn download_and_compile_pxr() -> anyhow::Result<std::path::PathBuf> {
+    pub fn download_and_compile_openusd() -> std::path::PathBuf {
         // ENV: Determine if the download should be forced regardless of the cache validity
         println!("cargo:rerun-if-env-changed=OPENUSD_DOWNLOAD_FORCE");
         let force_download = built_different::parse_bool_env("OPENUSD_DOWNLOAD_FORCE", false);
@@ -389,7 +383,7 @@ mod vendored {
         // ENV: Determine the version of OpenUSD to download and compile
         const DEFAULT_OPENUSD_DOWNLOAD_VERSION: &str = "22.11";
         println!("cargo:rerun-if-env-changed=OPENUSD_DOWNLOAD_VERSION");
-        let pxr_version = std::env::var("OPENUSD_DOWNLOAD_VERSION")
+        let openusd_version = std::env::var("OPENUSD_DOWNLOAD_VERSION")
             .unwrap_or_else(|_| DEFAULT_OPENUSD_DOWNLOAD_VERSION.to_string());
 
         // ENV: Determine the URL from which download OpenUSD source
@@ -399,43 +393,49 @@ mod vendored {
         let download_url = std::env::var("OPENUSD_DOWNLOAD_URL")
             .unwrap_or_else(|_| DEFAULT_OPENUSD_DOWNLOAD_URL.to_string());
         // Replace a potential version placeholder in the URL
-        let download_url = download_url.replace("${{VERSION}}", &pxr_version);
+        let download_url = download_url.replace("${{VERSION}}", &openusd_version);
 
         // ENV: Determine whether to symlink or move the installation to the cache
         println!("cargo:rerun-if-env-changed=OPENUSD_DOWNLOAD_SYMLINK_CACHE");
         let symlink_cache = built_different::parse_bool_env("OPENUSD_DOWNLOAD_SYMLINK_CACHE", true);
 
         // Determine the cache path based on the version of OpenUSD and the current build configuration
-        let cache_path = determine_cache_path_pxr(&pxr_version);
+        let cache_path = determine_cache_path_openusd(&openusd_version);
 
         // Make OPENUSD_PATH environment variable point to the cache (used for default location of OpenUSD if OPENUSD_PATH is not set during runtime)
         println!("cargo:rustc-env=OPENUSD_PATH={}", cache_path.display());
 
         // Skip download if the cache is valid and download is not forced
         if !force_download && cache_path.exists() {
-            return Ok(cache_path);
+            return cache_path;
         }
 
         // Determine the path where the OpenUSD source will be extracted
-        let pxr_extract_path =
+        let openusd_extract_path =
             std::path::PathBuf::from(std::env::var_os("OUT_DIR").unwrap_or_else(|| unreachable!()))
-                .join(format!("pxr{pxr_version}_source"));
+                .join(format!("openusd{openusd_version}_source"));
         // Determine the installation path
-        let pxr_install_path =
+        let openusd_install_path =
             std::path::PathBuf::from(std::env::var_os("OUT_DIR").unwrap_or_else(|| unreachable!()))
-                .join(format!("pxr{pxr_version}"));
+                .join(format!("openusd{openusd_version}"));
 
         // Download and uncompress
-        built_different::download_and_uncompress(&download_url, &pxr_extract_path, force_download)?;
+        built_different::download_and_uncompress(
+            &download_url,
+            &openusd_extract_path,
+            force_download,
+        )
+        .unwrap();
 
         // Locate the root of the OpenUSD source
-        let pxr_src_path = pxr_extract_path.join(format!("OpenUSD-{pxr_version}"));
+        let openusd_src_path = openusd_extract_path.join(format!("OpenUSD-{openusd_version}"));
 
         // Apply compile-time patches
-        built_different::apply_file_patches_in_place("patches/src", &pxr_src_path, true, true)?;
+        built_different::apply_file_patches_in_place("patches/src", &openusd_src_path, true, true)
+            .unwrap();
 
         // Locate the build script
-        let build_script_path = pxr_src_path.join("build_scripts").join("build_usd.py");
+        let build_script_path = openusd_src_path.join("build_scripts").join("build_usd.py");
 
         // Configure additional build arguments
         let mut extra_args: Vec<String> = Vec::new();
@@ -527,10 +527,11 @@ mod vendored {
                 "--no-materialx",
             ])
             .args(extra_args)
-            .arg(&pxr_install_path)
+            .arg(&openusd_install_path)
             .stdout(std::process::Stdio::piped())
             .stderr(std::process::Stdio::piped())
-            .output()?;
+            .output()
+            .unwrap();
         let status = output.status;
         if !status.success() {
             let stdout = String::from_utf8_lossy(&output.stdout);
@@ -539,23 +540,23 @@ mod vendored {
         }
 
         // Remove the source now that it is no longer needed
-        std::fs::remove_dir_all(&pxr_extract_path)?;
-        std::fs::remove_dir_all(pxr_install_path.join("src"))?;
+        std::fs::remove_dir_all(&openusd_extract_path).unwrap();
+        std::fs::remove_dir_all(openusd_install_path.join("src")).unwrap();
 
         // Move OpenUSD to the cache or create a symlink
         if symlink_cache && !cache_path.is_dir() {
-            built_different::create_symlink(&pxr_install_path, &cache_path, true).unwrap();
-        } else {
+            built_different::create_symlink(&openusd_install_path, &cache_path, true).unwrap();
+        } else if !cache_path.is_symlink() {
             if let Some(parent) = cache_path.parent() {
-                std::fs::create_dir_all(parent)?;
+                std::fs::create_dir_all(parent).unwrap();
             }
-            std::fs::rename(&pxr_install_path, &cache_path)?;
+            std::fs::rename(&openusd_install_path, &cache_path).unwrap();
         }
 
-        Ok(cache_path)
+        cache_path
     }
 
-    fn determine_cache_path_pxr(version: &str) -> std::path::PathBuf {
+    fn determine_cache_path_openusd(version: &str) -> std::path::PathBuf {
         // Determine the name of the build variant
         #[cfg(debug_assertions)]
         const BUILD_VARIANT: &str = "_debug";

@@ -35,7 +35,7 @@ impl TryFrom<crate::pxr::VtValue> for bool {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type bool.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -53,7 +53,7 @@ impl TryFrom<&crate::pxr::VtValue> for bool {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type bool.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -103,7 +103,7 @@ impl TryFrom<crate::pxr::VtValue> for u8 {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type u8.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -121,7 +121,7 @@ impl TryFrom<&crate::pxr::VtValue> for u8 {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type u8.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -171,7 +171,7 @@ impl TryFrom<crate::pxr::VtValue> for i32 {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type i32.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -189,7 +189,7 @@ impl TryFrom<&crate::pxr::VtValue> for i32 {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type i32.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -239,7 +239,7 @@ impl TryFrom<crate::pxr::VtValue> for u32 {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type u32.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -257,7 +257,7 @@ impl TryFrom<&crate::pxr::VtValue> for u32 {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type u32.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -307,7 +307,7 @@ impl TryFrom<crate::pxr::VtValue> for i64 {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type i64.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -325,7 +325,7 @@ impl TryFrom<&crate::pxr::VtValue> for i64 {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type i64.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -375,7 +375,7 @@ impl TryFrom<crate::pxr::VtValue> for u64 {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type u64.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -393,7 +393,7 @@ impl TryFrom<&crate::pxr::VtValue> for u64 {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type u64.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -443,7 +443,7 @@ impl TryFrom<crate::pxr::VtValue> for crate::pxr::GfHalf {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfHalf.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -461,7 +461,7 @@ impl TryFrom<&crate::pxr::VtValue> for crate::pxr::GfHalf {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfHalf.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -511,7 +511,7 @@ impl TryFrom<crate::pxr::VtValue> for ::half::f16 {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type ::half::f16.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -529,7 +529,7 @@ impl TryFrom<&crate::pxr::VtValue> for ::half::f16 {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type ::half::f16.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -579,7 +579,7 @@ impl TryFrom<crate::pxr::VtValue> for f32 {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type f32.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -597,7 +597,7 @@ impl TryFrom<&crate::pxr::VtValue> for f32 {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type f32.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -647,7 +647,7 @@ impl TryFrom<crate::pxr::VtValue> for f64 {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type f64.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -665,7 +665,7 @@ impl TryFrom<&crate::pxr::VtValue> for f64 {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type f64.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -715,7 +715,7 @@ impl TryFrom<crate::pxr::VtValue> for crate::pxr::SdfTimeCode {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::SdfTimeCode.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -733,7 +733,7 @@ impl TryFrom<&crate::pxr::VtValue> for crate::pxr::SdfTimeCode {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::SdfTimeCode.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -783,7 +783,7 @@ impl TryFrom<crate::pxr::VtValue> for crate::pxr::TfToken {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::TfToken.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -801,7 +801,7 @@ impl TryFrom<&crate::pxr::VtValue> for crate::pxr::TfToken {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::TfToken.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -851,7 +851,7 @@ impl TryFrom<crate::pxr::VtValue> for crate::pxr::SdfAssetPath {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::SdfAssetPath.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -869,7 +869,7 @@ impl TryFrom<&crate::pxr::VtValue> for crate::pxr::SdfAssetPath {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::SdfAssetPath.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -919,7 +919,7 @@ impl TryFrom<crate::pxr::VtValue> for crate::pxr::GfMatrix2d {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfMatrix2d.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -937,7 +937,7 @@ impl TryFrom<&crate::pxr::VtValue> for crate::pxr::GfMatrix2d {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfMatrix2d.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -987,7 +987,7 @@ impl TryFrom<crate::pxr::VtValue> for crate::pxr::GfMatrix3d {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfMatrix3d.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -1005,7 +1005,7 @@ impl TryFrom<&crate::pxr::VtValue> for crate::pxr::GfMatrix3d {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfMatrix3d.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -1055,7 +1055,7 @@ impl TryFrom<crate::pxr::VtValue> for crate::pxr::GfMatrix4d {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfMatrix4d.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -1073,7 +1073,7 @@ impl TryFrom<&crate::pxr::VtValue> for crate::pxr::GfMatrix4d {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfMatrix4d.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -1123,7 +1123,7 @@ impl TryFrom<crate::pxr::VtValue> for crate::pxr::GfQuatd {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfQuatd.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -1141,7 +1141,7 @@ impl TryFrom<&crate::pxr::VtValue> for crate::pxr::GfQuatd {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfQuatd.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -1191,7 +1191,7 @@ impl TryFrom<crate::pxr::VtValue> for crate::pxr::GfQuatf {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfQuatf.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -1209,7 +1209,7 @@ impl TryFrom<&crate::pxr::VtValue> for crate::pxr::GfQuatf {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfQuatf.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -1259,7 +1259,7 @@ impl TryFrom<crate::pxr::VtValue> for crate::pxr::GfQuath {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfQuath.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -1277,7 +1277,7 @@ impl TryFrom<&crate::pxr::VtValue> for crate::pxr::GfQuath {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfQuath.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -1327,7 +1327,7 @@ impl TryFrom<crate::pxr::VtValue> for crate::pxr::GfVec2d {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfVec2d.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -1345,7 +1345,7 @@ impl TryFrom<&crate::pxr::VtValue> for crate::pxr::GfVec2d {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfVec2d.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -1395,7 +1395,7 @@ impl TryFrom<crate::pxr::VtValue> for [f64; 2] {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type [f64; 2].",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -1413,7 +1413,7 @@ impl TryFrom<&crate::pxr::VtValue> for [f64; 2] {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type [f64; 2].",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -1463,7 +1463,7 @@ impl TryFrom<crate::pxr::VtValue> for crate::pxr::GfVec2f {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfVec2f.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -1481,7 +1481,7 @@ impl TryFrom<&crate::pxr::VtValue> for crate::pxr::GfVec2f {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfVec2f.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -1531,7 +1531,7 @@ impl TryFrom<crate::pxr::VtValue> for [f32; 2] {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type [f32; 2].",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -1549,7 +1549,7 @@ impl TryFrom<&crate::pxr::VtValue> for [f32; 2] {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type [f32; 2].",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -1599,7 +1599,7 @@ impl TryFrom<crate::pxr::VtValue> for crate::pxr::GfVec2h {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfVec2h.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -1617,7 +1617,7 @@ impl TryFrom<&crate::pxr::VtValue> for crate::pxr::GfVec2h {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfVec2h.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -1667,7 +1667,7 @@ impl TryFrom<crate::pxr::VtValue> for [::half::f16; 2] {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type [::half::f16; 2].",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -1685,7 +1685,7 @@ impl TryFrom<&crate::pxr::VtValue> for [::half::f16; 2] {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type [::half::f16; 2].",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -1735,7 +1735,7 @@ impl TryFrom<crate::pxr::VtValue> for crate::pxr::GfVec2i {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfVec2i.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -1753,7 +1753,7 @@ impl TryFrom<&crate::pxr::VtValue> for crate::pxr::GfVec2i {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfVec2i.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -1803,7 +1803,7 @@ impl TryFrom<crate::pxr::VtValue> for [i32; 2] {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type [i32; 2].",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -1821,7 +1821,7 @@ impl TryFrom<&crate::pxr::VtValue> for [i32; 2] {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type [i32; 2].",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -1871,7 +1871,7 @@ impl TryFrom<crate::pxr::VtValue> for crate::pxr::GfVec3d {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfVec3d.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -1889,7 +1889,7 @@ impl TryFrom<&crate::pxr::VtValue> for crate::pxr::GfVec3d {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfVec3d.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -1939,7 +1939,7 @@ impl TryFrom<crate::pxr::VtValue> for [f64; 3] {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type [f64; 3].",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -1957,7 +1957,7 @@ impl TryFrom<&crate::pxr::VtValue> for [f64; 3] {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type [f64; 3].",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -2007,7 +2007,7 @@ impl TryFrom<crate::pxr::VtValue> for crate::pxr::GfVec3f {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfVec3f.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -2025,7 +2025,7 @@ impl TryFrom<&crate::pxr::VtValue> for crate::pxr::GfVec3f {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfVec3f.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -2075,7 +2075,7 @@ impl TryFrom<crate::pxr::VtValue> for [f32; 3] {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type [f32; 3].",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -2093,7 +2093,7 @@ impl TryFrom<&crate::pxr::VtValue> for [f32; 3] {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type [f32; 3].",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -2143,7 +2143,7 @@ impl TryFrom<crate::pxr::VtValue> for crate::pxr::GfVec3h {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfVec3h.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -2161,7 +2161,7 @@ impl TryFrom<&crate::pxr::VtValue> for crate::pxr::GfVec3h {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfVec3h.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -2211,7 +2211,7 @@ impl TryFrom<crate::pxr::VtValue> for [::half::f16; 3] {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type [::half::f16; 3].",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -2229,7 +2229,7 @@ impl TryFrom<&crate::pxr::VtValue> for [::half::f16; 3] {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type [::half::f16; 3].",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -2279,7 +2279,7 @@ impl TryFrom<crate::pxr::VtValue> for crate::pxr::GfVec3i {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfVec3i.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -2297,7 +2297,7 @@ impl TryFrom<&crate::pxr::VtValue> for crate::pxr::GfVec3i {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfVec3i.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -2347,7 +2347,7 @@ impl TryFrom<crate::pxr::VtValue> for [i32; 3] {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type [i32; 3].",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -2365,7 +2365,7 @@ impl TryFrom<&crate::pxr::VtValue> for [i32; 3] {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type [i32; 3].",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -2415,7 +2415,7 @@ impl TryFrom<crate::pxr::VtValue> for crate::pxr::GfVec4d {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfVec4d.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -2433,7 +2433,7 @@ impl TryFrom<&crate::pxr::VtValue> for crate::pxr::GfVec4d {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfVec4d.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -2483,7 +2483,7 @@ impl TryFrom<crate::pxr::VtValue> for [f64; 4] {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type [f64; 4].",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -2501,7 +2501,7 @@ impl TryFrom<&crate::pxr::VtValue> for [f64; 4] {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type [f64; 4].",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -2551,7 +2551,7 @@ impl TryFrom<crate::pxr::VtValue> for crate::pxr::GfVec4f {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfVec4f.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -2569,7 +2569,7 @@ impl TryFrom<&crate::pxr::VtValue> for crate::pxr::GfVec4f {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfVec4f.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -2619,7 +2619,7 @@ impl TryFrom<crate::pxr::VtValue> for [f32; 4] {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type [f32; 4].",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -2637,7 +2637,7 @@ impl TryFrom<&crate::pxr::VtValue> for [f32; 4] {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type [f32; 4].",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -2687,7 +2687,7 @@ impl TryFrom<crate::pxr::VtValue> for crate::pxr::GfVec4h {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfVec4h.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -2705,7 +2705,7 @@ impl TryFrom<&crate::pxr::VtValue> for crate::pxr::GfVec4h {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfVec4h.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -2755,7 +2755,7 @@ impl TryFrom<crate::pxr::VtValue> for [::half::f16; 4] {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type [::half::f16; 4].",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -2773,7 +2773,7 @@ impl TryFrom<&crate::pxr::VtValue> for [::half::f16; 4] {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type [::half::f16; 4].",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -2823,7 +2823,7 @@ impl TryFrom<crate::pxr::VtValue> for crate::pxr::GfVec4i {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfVec4i.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -2841,7 +2841,7 @@ impl TryFrom<&crate::pxr::VtValue> for crate::pxr::GfVec4i {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type crate::pxr::GfVec4i.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -2891,7 +2891,7 @@ impl TryFrom<crate::pxr::VtValue> for [i32; 4] {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type [i32; 4].",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }
@@ -2909,7 +2909,7 @@ impl TryFrom<&crate::pxr::VtValue> for [i32; 4] {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type [i32; 4].",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }

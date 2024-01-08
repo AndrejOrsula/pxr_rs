@@ -36,7 +36,7 @@ macro_rules! gen_vt_value {
                     } else {
                         Err(format!(
                             "Cannot cast C++ type pxr::VtValue<{}> to Rust type $rs_type.",
-                            value.GetTypeName().to_string()
+                            value.GetTypeName()
                         ))
                     }
                 }
@@ -54,7 +54,7 @@ macro_rules! gen_vt_value {
                     } else {
                         Err(format!(
                             "Cannot cast C++ type pxr::VtValue<{}> to Rust type $rs_type.",
-                            value.GetTypeName().to_string()
+                            value.GetTypeName()
                         ))
                     }
                 }
@@ -93,7 +93,7 @@ macro_rules! gen_vt_value {
     };
 }
 
-pub fn codegen(out: impl AsRef<std::path::Path>) -> anyhow::Result<()> {
+pub fn codegen(out: impl AsRef<std::path::Path>) {
     let code = gen_vt_value![
         bool as "bool",
         u8 as "uint8_t" => "unsigned char",
@@ -140,5 +140,5 @@ pub fn codegen(out: impl AsRef<std::path::Path>) -> anyhow::Result<()> {
         crate::pxr::GfVec4i as "pxr::GfVec4i" => "GfVec4i",
         [i32; 4] as "pxr::GfVec4i" => "GfVec4i",
     ];
-    crate::codegen_write(&code, out)
+    crate::codegen_write(&code, out);
 }

@@ -6,4 +6,4 @@ pub use ffi::{
     bindings::{make_string, ToCppString},
     pxr,
 };
-pub use utils::path::pxr_path;
+pub use utils::path::openusd_path;

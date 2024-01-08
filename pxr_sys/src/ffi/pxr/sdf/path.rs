@@ -13,6 +13,6 @@ impl std::cmp::PartialEq for pxr::SdfPath {
 
 impl std::fmt::Display for pxr::SdfPath {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self.GetString().to_string())
+        write!(f, "{}", self.GetString())
     }
 }

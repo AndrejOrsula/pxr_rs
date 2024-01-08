@@ -28,7 +28,7 @@ impl TryFrom<&crate::pxr::VtValue> for &std::ffi::CStr {
         } else {
             Err(format!(
                 "Cannot cast C++ type pxr::VtValue<{}> to Rust type std::ffi::CStr.",
-                value.GetTypeName().to_string()
+                value.GetTypeName()
             ))
         }
     }

@@ -18,6 +18,7 @@ crate::macros::impl_vector_element!(
 );
 
 impl VtDictionary {
+    #[must_use]
     pub fn new() -> Pin<Box<VtDictionary>> {
         let stage_cache_context = unsafe {
             cpp!([] -> VtDictionary as "pxr::VtDictionary" {
@@ -27,6 +28,7 @@ impl VtDictionary {
         Box::into_pin(Box::new(stage_cache_context))
     }
 
+    #[must_use]
     pub fn with_capacity(capacity: usize) -> Pin<Box<VtDictionary>> {
         let stage_cache_context = unsafe {
             cpp!([capacity as "size_t"] -> VtDictionary as "pxr::VtDictionary" {

@@ -6,9 +6,9 @@ pub const HEADER: &str = "\
 //! It is not intended for manual editing.
 ";
 
-pub fn codegen_write(code: &str, out: impl AsRef<Path>) -> anyhow::Result<()> {
-    // Format the generated code
-    let code = rustfmt(code)?;
+pub fn codegen_write(code: &str, out: impl AsRef<Path>) {
+    // Try formatting the generated code if rustfmt is available.
+    let code = rustfmt(code).unwrap_or_else(|_| code.to_string());
 
     // Prefix the code with a header (disclaimer)
     let code = format!("{HEADER}\n{code}");
@@ -16,20 +16,18 @@ pub fn codegen_write(code: &str, out: impl AsRef<Path>) -> anyhow::Result<()> {
     // Don't overwrite the file if it hasn't changed (ignoring whitespace differences)
     let out = out.as_ref();
     if out.exists() {
-        let original_code = std::fs::read_to_string(out)?;
+        let original_code = std::fs::read_to_string(out).unwrap();
         if remove_redundant_whitespace(&original_code) == remove_redundant_whitespace(&code) {
-            return Ok(());
+            return;
         }
     }
 
     // Ensure the parent directory exists
     if let Some(parent) = out.parent() {
-        std::fs::create_dir_all(parent)?;
+        std::fs::create_dir_all(parent).unwrap();
     }
 
     // Write the generated code to a file.
-    let mut file = std::fs::File::create(out)?;
-    file.write_all(code.as_bytes())?;
-
-    Ok(())
+    let mut file = std::fs::File::create(out).unwrap();
+    file.write_all(code.as_bytes()).unwrap();
 }

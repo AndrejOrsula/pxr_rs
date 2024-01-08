@@ -26,6 +26,7 @@ impl std::iter::Iterator for UsdPrimRangeIterator {
 }
 
 impl pxr::UsdPrimRange {
+    #[must_use]
     pub fn iter(&self) -> UsdPrimRangeIterator {
         let begin = unsafe {
             cpp!([self as "pxr::UsdPrimRange *"] -> pxr::UsdPrimRange_iterator as "pxr::UsdPrimRange::iterator" {
@@ -50,6 +51,7 @@ impl pxr::UsdPrimRange_iterator {
         }
     }
 
+    #[must_use]
     pub fn _dereference(&self) -> pxr::UsdPrim {
         unsafe {
             cpp!([self as "const pxr::UsdPrimRange::iterator *"]
@@ -58,8 +60,10 @@ impl pxr::UsdPrimRange_iterator {
             })
         }
     }
+}
 
-    pub fn eq(&self, rhs: &Self) -> bool {
+impl std::cmp::PartialEq for pxr::UsdPrimRange_iterator {
+    fn eq(&self, rhs: &Self) -> bool {
         unsafe {
             cpp!([self as "const pxr::UsdPrimRange::iterator *",
                   rhs as "const pxr::UsdPrimRange::iterator *"]
