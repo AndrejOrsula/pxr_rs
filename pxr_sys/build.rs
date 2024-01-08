@@ -204,7 +204,7 @@ fn main() {
 
     // Configure link libraries
     #[cfg(feature = "monolithic_lib")]
-    for lib in LINK_LIBS.iter() {
+    for lib in LINK_LIBS {
         println!("cargo:rustc-link-lib=dylib={lib}");
     }
     #[cfg(not(feature = "monolithic_lib"))]

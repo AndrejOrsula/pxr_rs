@@ -56,7 +56,11 @@ jobs:
           python-version: "3.10"
 
       ## Install dependencies
-      - run: sudo apt-get update && sudo apt-get install -yq --no-install-recommends clang cmake libarchive-dev libgl-dev libglu-dev libilmbase-dev libssl-dev libstdc++-12-dev libx11-dev libxt-dev
+      - run: sudo apt-get update && sudo apt-get install -yq --no-install-recommends cmake libarchive-dev libgl-dev libglu-dev libilmbase-dev libssl-dev libx11-dev libxt-dev
+      - name: Install LLVM and Clang
+        uses: KyleMayes/install-llvm-action@v1
+        with:
+          version: "15.0"
 
       ## Install mold linker
       - name: Use mold
