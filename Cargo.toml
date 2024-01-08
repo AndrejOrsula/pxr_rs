@@ -25,7 +25,6 @@ version = "0.1.0"
 pxr_build = { path = "pxr_build", version = "0.1.0" }
 pxr_sys = { path = "pxr_sys", version = "0.1.0" }
 
-anyhow = { version = "1.0" }
 autocxx = { version = "0.26" }
 autocxx-build = { version = "0.26" }
 built_different = { version = "0.1" }

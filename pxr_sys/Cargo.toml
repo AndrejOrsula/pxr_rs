@@ -20,7 +20,6 @@ half = { workspace = true }
 thiserror = { workspace = true }
 
 [build-dependencies]
-anyhow = { workspace = true }
 autocxx-build = { workspace = true }
 built_different = { workspace = true }
 cpp_build = { workspace = true }

@@ -173,7 +173,7 @@ fn main() {
 
             // If the `vendored` feature is enabled, download and compile OpenUSD (or use the previously cached installation)
             #[cfg(feature = "vendored")]
-            vendored::download_and_compile_openusd().unwrap()
+            vendored::download_and_compile_openusd()
         }
     };
     // Verify that the OpenUSD installation contains the required subdirectories
@@ -294,21 +294,19 @@ fn main() {
         .collect::<Vec<_>>();
 
     // Expand macros to generate Rust code with `cpp` macros (workaround | `cpp!` macros cannot be nested)
-    bindings::expand_macros_cpp().unwrap();
+    bindings::expand_macros_cpp();
 
     // Compile C++ code with `cpp`
-    bindings::compile_cpp(&include_paths).unwrap();
+    bindings::compile_cpp(&include_paths);
 
     // Generate bindings with `autocxx`
-    bindings::generate_autocxx(&include_paths).unwrap();
+    bindings::generate_autocxx(&include_paths);
 }
 
 /// Module that contains functions for generating bindings.
 mod bindings {
-    pub fn generate_autocxx(
-        include_paths: impl IntoIterator<Item = impl AsRef<std::ffi::OsStr>>,
-    ) -> anyhow::Result<()> {
-        autocxx_build::Builder::new("src/ffi/bindings.rs", include_paths.into_iter())
+    pub fn generate_autocxx(include_paths: impl IntoIterator<Item = impl AsRef<std::ffi::OsStr>>) {
+        autocxx_build::Builder::new("src/ffi/bindings.rs", include_paths)
             .extra_clang_args(&[
                 "-x",
                 "c++",
@@ -318,7 +316,8 @@ mod bindings {
                 &format!("-D_GLIBCXX_USE_CXX11_ABI={}", super::USE_CXX11_ABI),
                 "-Wno-everything",
             ])
-            .build()?
+            .build()
+            .unwrap()
             .compiler("clang")
             .flag("-x")
             .flag("c++")
@@ -328,23 +327,19 @@ mod bindings {
             .define("_GLIBCXX_USE_CXX11_ABI", Some(super::USE_CXX11_ABI))
             .flag("-Wno-everything")
             .compile("openusd_sys_autocxx");
-        Ok(())
     }
 
-    pub fn expand_macros_cpp() -> anyhow::Result<()> {
+    pub fn expand_macros_cpp() {
         pxr_build::codegen::codegen_vt_value(
             std::path::PathBuf::from("src")
                 .join("ffi")
                 .join("pxr")
                 .join("vt")
                 .join("value.rs"),
-        )?;
-        Ok(())
+        );
     }
 
-    pub fn compile_cpp(
-        include_paths: impl IntoIterator<Item = impl AsRef<std::path::Path>>,
-    ) -> anyhow::Result<()> {
+    pub fn compile_cpp(include_paths: impl IntoIterator<Item = impl AsRef<std::path::Path>>) {
         // Configure rebuild triggers based on file changes
         walkdir::WalkDir::new("src/ffi")
             .into_iter()
@@ -375,13 +370,12 @@ mod bindings {
             cpp_builder = cpp_builder.include(path);
         }
         cpp_builder.build("src/lib.rs");
-        Ok(())
     }
 }
 
 #[cfg(feature = "vendored")]
 mod vendored {
-    pub fn download_and_compile_openusd() -> anyhow::Result<std::path::PathBuf> {
+    pub fn download_and_compile_openusd() -> std::path::PathBuf {
         // ENV: Determine if the download should be forced regardless of the cache validity
         println!("cargo:rerun-if-env-changed=OPENUSD_DOWNLOAD_FORCE");
         let force_download = built_different::parse_bool_env("OPENUSD_DOWNLOAD_FORCE", false);
@@ -413,7 +407,7 @@ mod vendored {
 
         // Skip download if the cache is valid and download is not forced
         if !force_download && cache_path.exists() {
-            return Ok(cache_path);
+            return cache_path;
         }
 
         // Determine the path where the OpenUSD source will be extracted
@@ -430,13 +424,15 @@ mod vendored {
             &download_url,
             &openusd_extract_path,
             force_download,
-        )?;
+        )
+        .unwrap();
 
         // Locate the root of the OpenUSD source
         let openusd_src_path = openusd_extract_path.join(format!("OpenUSD-{openusd_version}"));
 
         // Apply compile-time patches
-        built_different::apply_file_patches_in_place("patches/src", &openusd_src_path, true, true)?;
+        built_different::apply_file_patches_in_place("patches/src", &openusd_src_path, true, true)
+            .unwrap();
 
         // Locate the build script
         let build_script_path = openusd_src_path.join("build_scripts").join("build_usd.py");
@@ -534,7 +530,8 @@ mod vendored {
             .arg(&openusd_install_path)
             .stdout(std::process::Stdio::piped())
             .stderr(std::process::Stdio::piped())
-            .output()?;
+            .output()
+            .unwrap();
         let status = output.status;
         if !status.success() {
             let stdout = String::from_utf8_lossy(&output.stdout);
@@ -543,20 +540,20 @@ mod vendored {
         }
 
         // Remove the source now that it is no longer needed
-        std::fs::remove_dir_all(&openusd_extract_path)?;
-        std::fs::remove_dir_all(openusd_install_path.join("src"))?;
+        std::fs::remove_dir_all(&openusd_extract_path).unwrap();
+        std::fs::remove_dir_all(openusd_install_path.join("src")).unwrap();
 
         // Move OpenUSD to the cache or create a symlink
         if symlink_cache && !cache_path.is_dir() {
-            built_different::create_symlink(&openusd_install_path, &cache_path, true)?;
+            built_different::create_symlink(&openusd_install_path, &cache_path, true).unwrap();
         } else {
             if let Some(parent) = cache_path.parent() {
-                std::fs::create_dir_all(parent)?;
+                std::fs::create_dir_all(parent).unwrap();
             }
-            std::fs::rename(&openusd_install_path, &cache_path)?;
+            std::fs::rename(&openusd_install_path, &cache_path).unwrap();
         }
 
-        Ok(cache_path)
+        cache_path
     }
 
     fn determine_cache_path_openusd(version: &str) -> std::path::PathBuf {

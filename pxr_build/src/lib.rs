@@ -4,4 +4,4 @@ pub mod codegen;
 mod utils;
 
 pub use codegen::*;
-pub(crate) use utils::codegen::codegen_write;
+pub(crate) use utils::codegen_write;
