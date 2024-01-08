@@ -546,7 +546,7 @@ mod vendored {
         // Move OpenUSD to the cache or create a symlink
         if symlink_cache && !cache_path.is_dir() {
             built_different::create_symlink(&openusd_install_path, &cache_path, true).unwrap();
-        } else {
+        } else if !cache_path.is_symlink() {
             if let Some(parent) = cache_path.parent() {
                 std::fs::create_dir_all(parent).unwrap();
             }
