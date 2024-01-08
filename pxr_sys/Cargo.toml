@@ -16,12 +16,7 @@ links = "usd"
 autocxx = { workspace = true }
 cpp = { workspace = true }
 cxx = { workspace = true }
-derive_builder = { workspace = true }
-derive_more = { workspace = true }
 half = { workspace = true }
-moveit = { workspace = true }
-once_cell = { workspace = true }
-semver = { workspace = true }
 thiserror = { workspace = true }
 
 [build-dependencies]
@@ -29,7 +24,6 @@ anyhow = { workspace = true }
 autocxx-build = { workspace = true }
 built_different = { workspace = true }
 cpp_build = { workspace = true }
-cxx-build = { workspace = true }
 pxr_build = { workspace = true }
 python-config-rs = { workspace = true, optional = true }
 walkdir = { workspace = true }
