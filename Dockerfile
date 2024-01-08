@@ -29,10 +29,8 @@ WORKDIR ${WORKSPACE}
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
     build-essential \
-    ca-certificates \
     clang \
     cmake \
-    curl \
     libarchive-dev \
     libgl-dev \
     libglu-dev \
