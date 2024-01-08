@@ -99,6 +99,10 @@ To join a running Docker container from another terminal, you can use [`.docker/
 
 </details>
 
+## Disclaimer
+
+This project is not affiliated with the Alliance for OpenUSD (AOUSD).
+
 ## License
 
 This project is dual-licensed to be compatible with the Rust project, under either the [MIT](LICENSE-MIT) or [Apache 2.0](LICENSE-APACHE) licenses.
