@@ -19,11 +19,11 @@ license = "MIT OR Apache-2.0"
 readme = "README.md"
 repository = "https://github.com/AndrejOrsula/pxr_rs"
 rust-version = "1.70"
-version = "0.1.0"
+version = "0.1.1"
 
 [workspace.dependencies]
-pxr_build = { path = "pxr_build", version = "0.1.0" }
-pxr_sys = { path = "pxr_sys", version = "0.1.0" }
+pxr_build = { path = "pxr_build", version = "0.1.1" }
+pxr_sys = { path = "pxr_sys", version = "0.1.1" }
 
 autocxx = { version = "0.26" }
 autocxx-build = { version = "0.26" }
