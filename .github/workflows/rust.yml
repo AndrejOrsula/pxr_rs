@@ -56,7 +56,7 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -yq --no-install-recommends cmake libarchive-dev libgl-dev libglu-dev libilmbase-dev libssl-dev libx11-dev libxt-dev
       - uses: KyleMayes/install-llvm-action@v1
         with:
-          version: "14.0"
+          version: "15.0"
       - uses: actions/setup-python@v5
         with:
           python-version: "3.10"
