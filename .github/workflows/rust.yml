@@ -104,7 +104,6 @@ jobs:
           fail_ci_if_error: true
 
   deny:
-    needs: cargo
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
