@@ -48,6 +48,12 @@ pxr = { git = "https://github.com/AndrejOrsula/pxr_rs.git" }
 
 Note that the first build might take up to 50 minutes because OpenUSD will be automatically downloaded and compiled with the `vendored` feature enabled. The artifacts will be cached in `OUT_DIR` and reused for subsequent builds.
 
+Alternatively, you can specify the path to an existing OpenUSD installation directory via the following environment variable.
+
+```bash
+export OPENUSD_PATH=/path/to/pxr/openusd
+```
+
 It is highly recommended to use `lld` or `mold` linker because `ld` might currently fail.
 
 <details>
