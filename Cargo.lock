@@ -1142,7 +1142,7 @@ dependencies = [
 
 [[package]]
 name = "pxr"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "pxr_sys",
  "thiserror",
@@ -1150,7 +1150,7 @@ dependencies = [
 
 [[package]]
 name = "pxr_build"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "regex",
  "which 5.0.0",
@@ -1158,7 +1158,7 @@ dependencies = [
 
 [[package]]
 name = "pxr_sys"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "autocxx",
  "autocxx-build",
