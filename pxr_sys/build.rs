@@ -450,13 +450,13 @@ mod vendored {
         #[cfg(feature = "monolithic_lib")]
         extra_args.push("--build-monolithic".to_string());
 
-        // Select debug or release build variant
-        #[cfg(debug_assertions)]
-        {
-            extra_args.push("--build-variant=debug".to_string()); // Alternative: --build-variant=relwithdebuginfo
-            extra_args.push("--prefer-safety-over-speed".to_string());
-        }
-        #[cfg(not(debug_assertions))]
+        // // Select debug or release build variant
+        // #[cfg(debug_assertions)]
+        // {
+        //     extra_args.push("--build-variant=debug".to_string()); // Alternative: --build-variant=relwithdebuginfo
+        //     extra_args.push("--prefer-safety-over-speed".to_string());
+        // }
+        // #[cfg(not(debug_assertions))]
         {
             extra_args.push("--build-variant=release".to_string());
             extra_args.push("--prefer-speed-over-safety".to_string());
@@ -558,9 +558,9 @@ mod vendored {
 
     fn determine_cache_path_openusd(version: &str) -> std::path::PathBuf {
         // Determine the name of the build variant
-        #[cfg(debug_assertions)]
-        const BUILD_VARIANT: &str = "_debug";
-        #[cfg(not(debug_assertions))]
+        // #[cfg(debug_assertions)]
+        // const BUILD_VARIANT: &str = "_debug";
+        // #[cfg(not(debug_assertions))]
         const BUILD_VARIANT: &str = "_release";
 
         // Determine if the build is monolithic

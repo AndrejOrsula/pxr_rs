@@ -29,6 +29,12 @@ repos:
     hooks:
       - id: beautysh
 
+  - repo: https://github.com/hadolint/hadolint
+    rev: v2.12.1-beta
+    hooks:
+      - id: hadolint-docker
+        args: [--ignore, SC1091, --ignore, DL3003, --ignore, DL3008]
+
   - repo: https://github.com/codespell-project/codespell
     rev: v2.2.6
     hooks:
