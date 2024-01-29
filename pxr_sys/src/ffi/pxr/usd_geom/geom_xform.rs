@@ -19,4 +19,13 @@ impl pxr::UsdGeomXformOp {
             })
         }
     }
+
+    #[must_use]
+    pub fn set_quatf(self: Pin<&mut Self>, value: &pxr::GfQuatf) -> bool {
+        unsafe {
+            cpp!([self as "pxr::UsdGeomXformOp *", value as "const pxr::GfQuatf *"] -> bool as "bool" {
+                return self->Set(*value);
+            })
+        }
+    }
 }
