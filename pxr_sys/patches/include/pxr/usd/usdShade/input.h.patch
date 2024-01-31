@@ -1,0 +1,91 @@
+--- ./pxr/usd/usdShade/input.h
++++ ./pxr/usd/usdShade/input.h
+@@ -373,34 +373,34 @@
+     bool SetConnectedSources(
+         std::vector<UsdShadeConnectionSourceInfo> const &sourceInfos) const;
+
+-    using SourceInfoVector = TfSmallVector<UsdShadeConnectionSourceInfo, 1>;
++    // using SourceInfoVector = TfSmallVector<UsdShadeConnectionSourceInfo, 1>;
+
+-    /// Finds the valid sources of connections for the Input.
+-    /// 
+-    /// \p invalidSourcePaths is an optional output parameter to collect the
+-    /// invalid source paths that have not been reported in the returned vector.
+-    /// 
+-    /// Returns a vector of \p UsdShadeConnectionSourceInfo structs with
+-    /// information about each upsteam attribute. If the vector is empty, there
+-    /// have been no valid connections.
+-    /// 
+-    /// \note A valid connection requires the existence of the source attribute
+-    /// and also requires that the source prim is UsdShadeConnectableAPI
+-    /// compatible.
+-    /// \note The python wrapping returns a tuple with the valid connections
+-    /// first, followed by the invalid source paths.
+-    /// 
+-    /// \sa UsdShadeConnectableAPI::GetConnectedSources
+-    ///
+-    USDSHADE_API
+-    SourceInfoVector GetConnectedSources(
+-        SdfPathVector *invalidSourcePaths = nullptr) const;
++    // /// Finds the valid sources of connections for the Input.
++    // /// 
++    // /// \p invalidSourcePaths is an optional output parameter to collect the
++    // /// invalid source paths that have not been reported in the returned vector.
++    // /// 
++    // /// Returns a vector of \p UsdShadeConnectionSourceInfo structs with
++    // /// information about each upsteam attribute. If the vector is empty, there
++    // /// have been no valid connections.
++    // /// 
++    // /// \note A valid connection requires the existence of the source attribute
++    // /// and also requires that the source prim is UsdShadeConnectableAPI
++    // /// compatible.
++    // /// \note The python wrapping returns a tuple with the valid connections
++    // /// first, followed by the invalid source paths.
++    // /// 
++    // /// \sa UsdShadeConnectableAPI::GetConnectedSources
++    // ///
++    // USDSHADE_API
++    // SourceInfoVector GetConnectedSources(
++    //     SdfPathVector *invalidSourcePaths = nullptr) const;
+
+-    /// \deprecated
+-    USDSHADE_API
+-    bool GetConnectedSource(UsdShadeConnectableAPI *source,
+-                            TfToken *sourceName,
+-                            UsdShadeAttributeType *sourceType) const;
++    // /// \deprecated
++    // USDSHADE_API
++    // bool GetConnectedSource(UsdShadeConnectableAPI *source,
++    //                         TfToken *sourceName,
++    //                         UsdShadeAttributeType *sourceType) const;
+
+     /// \deprecated
+     /// Returns the "raw" (authored) connected source paths for this Input.
+@@ -499,17 +499,17 @@
+     // -------------------------------------------------------------------------
+     /// @{
+
+-    /// \brief Find what is connected to this Input recursively
+-    ///
+-    /// \sa UsdShadeUtils::GetValueProducingAttributes
+-    USDSHADE_API
+-    UsdShadeAttributeVector GetValueProducingAttributes(
+-        bool shaderOutputsOnly = false) const;
++    // /// \brief Find what is connected to this Input recursively
++    // ///
++    // /// \sa UsdShadeUtils::GetValueProducingAttributes
++    // USDSHADE_API
++    // UsdShadeAttributeVector GetValueProducingAttributes(
++    //     bool shaderOutputsOnly = false) const;
+
+-    /// \deprecated in favor of calling GetValueProducingAttributes
+-    USDSHADE_API
+-    UsdAttribute GetValueProducingAttribute(
+-        UsdShadeAttributeType* attrType) const;
++    // /// \deprecated in favor of calling GetValueProducingAttributes
++    // USDSHADE_API
++    // UsdAttribute GetValueProducingAttribute(
++    //     UsdShadeAttributeType* attrType) const;
+
+     /// @}
+
