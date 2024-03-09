@@ -37,7 +37,7 @@ python-config-rs = { version = "0.1" }
 regex = { version = "1.10" }
 thiserror = { version = "1.0" }
 walkdir = { version = "2" }
-which = { version = "5.0" }
+which = { version = "6.0" }
 
 
 [patch.crates-io]

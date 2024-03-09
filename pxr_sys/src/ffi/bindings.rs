@@ -19,6 +19,7 @@ include_cpp! {
 
     // Declare external types from manual bindings
     extern_cpp_type!("pxrInternal_v0_22__pxrReserved__::SdfCleanupEnabler", crate::ffi::pxr::SdfCleanupEnabler)
+    extern_cpp_type!("pxrInternal_v0_22__pxrReserved__::SdfValueTypeNames", crate::ffi::pxr::SdfValueTypeNames)
     extern_cpp_type!("pxrInternal_v0_22__pxrReserved__::UsdStageCacheContext", crate::ffi::pxr::UsdStageCacheContext)
     extern_cpp_type!("pxrInternal_v0_22__pxrReserved__::UsdStageWeakPtr", crate::ffi::pxr::UsdStageWeakPtr)
     extern_cpp_type!("pxrInternal_v0_22__pxrReserved__::VtDictionary", crate::ffi::pxr::VtDictionary)
@@ -87,6 +88,7 @@ include_cpp! {
     generate!("pxrInternal_v0_22__pxrReserved__::SdfTimeCode")
     generate!("pxrInternal_v0_22__pxrReserved__::SdfValueTypeName")
     generate!("pxrInternal_v0_22__pxrReserved__::SdfVariantSpec")
+    generate!("pxrInternal_v0_22__pxrReserved__::SdfSchemaBase")
     // generate!("pxrInternal_v0_22__pxrReserved__::SdfAssetPath")
     // generate!("pxrInternal_v0_22__pxrReserved__::SdfPrimSpec")
     // generate!("pxrInternal_v0_22__pxrReserved__::SdfVariantSetSpec")
@@ -178,11 +180,12 @@ include_cpp! {
     generate!("pxrInternal_v0_22__pxrReserved__::UsdPhysicsTokensType")
     generate!("pxrInternal_v0_22__pxrReserved__::UsdPhysicsTokensType")
 
-    // generate!("pxrInternal_v0_22__pxrReserved__::UsdShadeMaterial")
-    // generate!("pxrInternal_v0_22__pxrReserved__::UsdShadeShader")
-    // generate!("pxrInternal_v0_22__pxrReserved__::UsdShadeUtils")
-    // generate!("pxrInternal_v0_22__pxrReserved__::UsdShadeInput")
-    // generate!("pxrInternal_v0_22__pxrReserved__::UsdShadeOutput")
+    generate!("pxrInternal_v0_22__pxrReserved__::UsdShadeInput")
+    generate!("pxrInternal_v0_22__pxrReserved__::UsdShadeMaterial")
+    generate!("pxrInternal_v0_22__pxrReserved__::UsdShadeMaterialBindingAPI")
+    generate!("pxrInternal_v0_22__pxrReserved__::UsdShadeOutput")
+    generate!("pxrInternal_v0_22__pxrReserved__::UsdShadeShader")
+    generate!("pxrInternal_v0_22__pxrReserved__::UsdShadeUtils")
 
     generate!("pxrInternal_v0_22__pxrReserved__::UsdUtilsRegisteredVariantSet")
     generate!("pxrInternal_v0_22__pxrReserved__::UsdUtilsSparseAttrValueWriter")

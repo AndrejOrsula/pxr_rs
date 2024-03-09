@@ -1,10 +1,12 @@
 # pxr_rs
 
 <p align="left">
-  <a href="https://crates.io/crates/pxr">                                        <img alt="crates.io" src="https://img.shields.io/crates/v/pxr.svg"></a>
-  <a href="https://github.com/AndrejOrsula/pxr_rs/actions/workflows/rust.yml">   <img alt="Rust"      src="https://github.com/AndrejOrsula/pxr_rs/actions/workflows/rust.yml/badge.svg"></a>
-  <a href="https://github.com/AndrejOrsula/pxr_rs/actions/workflows/docker.yml"> <img alt="Docker"    src="https://github.com/AndrejOrsula/pxr_rs/actions/workflows/docker.yml/badge.svg"></a>
-  <a href="https://codecov.io/gh/AndrejOrsula/pxr_rs">                           <img alt="codecov"   src="https://codecov.io/gh/AndrejOrsula/pxr_rs/branch/main/graph/badge.svg"></a>
+  <a href="https://crates.io/crates/pxr">                                        <img alt="crates.io"  src="https://img.shields.io/crates/v/pxr.svg"></a>
+  <!-- <a href="https://docs.rs/pxr">                                                 <img alt="docs.rs"    src="https://docs.rs/pxr/badge.svg"></a> -->
+  <a href="https://github.com/AndrejOrsula/pxr_rs/actions/workflows/rust.yml">   <img alt="Rust"       src="https://github.com/AndrejOrsula/pxr_rs/actions/workflows/rust.yml/badge.svg"></a>
+  <a href="https://github.com/AndrejOrsula/pxr_rs/actions/workflows/docker.yml"> <img alt="Docker"     src="https://github.com/AndrejOrsula/pxr_rs/actions/workflows/docker.yml/badge.svg"></a>
+  <a href="https://deps.rs/repo/github/AndrejOrsula/pxr_rs">                     <img alt="deps.rs"    src="https://deps.rs/repo/github/AndrejOrsula/pxr_rs/status.svg"></a>
+  <a href="https://codecov.io/gh/AndrejOrsula/pxr_rs">                           <img alt="codecov.io" src="https://codecov.io/gh/AndrejOrsula/pxr_rs/branch/main/graph/badge.svg"></a>
 </p>
 
 Rust interface for [OpenUSD](https://openusd.org).
@@ -47,6 +49,12 @@ pxr = { git = "https://github.com/AndrejOrsula/pxr_rs.git" }
 ```
 
 Note that the first build might take up to 50 minutes because OpenUSD will be automatically downloaded and compiled with the `vendored` feature enabled. The artifacts will be cached in `OUT_DIR` and reused for subsequent builds.
+
+Alternatively, you can specify the path to an existing OpenUSD installation directory via the following environment variable.
+
+```bash
+export OPENUSD_PATH=/path/to/pxr/openusd
+```
 
 It is highly recommended to use `lld` or `mold` linker because `ld` might currently fail.
 
