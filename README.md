@@ -41,11 +41,9 @@ Enabling of additional non-default features might require additional dependencie
 
 Add `pxr` as a Rust dependency to your [`Cargo.toml`](https://doc.rust-lang.org/cargo/reference/manifest.html) manifest.
 
-<!-- TODO[doc]: Update Cargo.toml dependency once the package can be reliably used from https://crates.io -->
-
 ```toml
 [dependencies]
-pxr = { git = "https://github.com/AndrejOrsula/pxr_rs.git" }
+pxr = { version = "0.2" }
 ```
 
 Note that the first build might take up to 50 minutes because OpenUSD will be automatically downloaded and compiled with the `vendored` feature enabled. The artifacts will be cached in `OUT_DIR` and reused for subsequent builds.
