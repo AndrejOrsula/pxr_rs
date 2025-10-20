@@ -64,9 +64,9 @@ checksum = "f1fdabc7756949593fe60f30ec81974b613357de856987752631dea1e3394c80"
 
 [[package]]
 name = "autocxx"
-version = "0.26.0"
+version = "0.30.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1ba64dd33efd8f09724143d45ab91b48aebcee52f4fb11add3464c998fab47dc"
+checksum = "5ae6bbbec65d053b6fd803a4d63d21d0bd4a92f84f917847f216fec8bb8ae6ae"
 dependencies = [
  "aquamarine",
  "autocxx-macro",
@@ -116,7 +116,7 @@ source = "git+https://github.com/AndrejOrsula/autocxx?branch=dev_pxr#5cae41654ec
 dependencies = [
  "aquamarine",
  "autocxx-bindgen",
- "autocxx-parser 0.26.0 (git+https://github.com/AndrejOrsula/autocxx?branch=dev_pxr)",
+ "autocxx-parser 0.26.0",
  "cc",
  "cxx-gen",
  "indexmap 1.9.3",
@@ -139,11 +139,11 @@ dependencies = [
 
 [[package]]
 name = "autocxx-macro"
-version = "0.26.0"
+version = "0.30.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8e594e68d030b6eb1ce7e2b40958f4f4ae7150c588c76d76b9f8178d41c47d80"
+checksum = "c26712d744702e6fe61fdc618cc107a581a009ec8bfaffc67707d82501dbd907"
 dependencies = [
- "autocxx-parser 0.26.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "autocxx-parser 0.30.0",
  "proc-macro-error",
  "proc-macro2",
  "quote",
@@ -153,8 +153,7 @@ dependencies = [
 [[package]]
 name = "autocxx-parser"
 version = "0.26.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2ef00b2fc378804c31c4fbd693a7fea93f8a90467dce331dae1e4ce41e542953"
+source = "git+https://github.com/AndrejOrsula/autocxx?branch=dev_pxr#5cae41654ecf5b45467098e079b64138a5f87821"
 dependencies = [
  "indexmap 1.9.3",
  "itertools 0.10.5",
@@ -170,8 +169,9 @@ dependencies = [
 
 [[package]]
 name = "autocxx-parser"
-version = "0.26.0"
-source = "git+https://github.com/AndrejOrsula/autocxx?branch=dev_pxr#5cae41654ecf5b45467098e079b64138a5f87821"
+version = "0.30.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6bcfc473ec409e612fb0e0c5c4a1b5b7611eca2bac71bc27b3cda98f15a25124"
 dependencies = [
  "indexmap 1.9.3",
  "itertools 0.10.5",
